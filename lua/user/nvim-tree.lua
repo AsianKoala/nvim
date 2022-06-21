@@ -13,7 +13,6 @@ local tree_cb = nvim_tree_config.nvim_tree_callback
 nvim_tree.setup {
   -- disable_netrw = true,
   -- hijack_netrw = true,
-  -- auto_close = true,
   update_focused_file = {
     enable = true,
     update_cwd = true,
@@ -59,7 +58,7 @@ nvim_tree.setup {
   view = {
     width = 30,
     height = 30,
-    side = "left",
+    side = "right",
     mappings = {
       list = {
         { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" },

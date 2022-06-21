@@ -90,12 +90,12 @@ return packer.startup(function(use)
 
 
 
+  use { "akinsho/bufferline.nvim", commit = "c78b3ecf9539a719828bca82fc7ddb9b3ba0c353" }
 
 
 
 
-
-
+  use { "akinsho/toggleterm.nvim", commit = "aaeed9e02167c5e8f00f25156895a6fd95403af8" }
 
 
 
