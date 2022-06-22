@@ -13,4 +13,5 @@ vim.g.tokyonight_style = "night"
 -- vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 
 -- Load the colorscheme
+vim.o.tokyonight_italic_keywords = false
 vim.cmd[[colorscheme tokyonight]]

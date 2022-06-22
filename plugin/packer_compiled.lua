@@ -129,6 +129,16 @@ _G.packer_plugins = {
     path = "/home/neil/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  ["impatient.nvim"] = {
+    loaded = true,
+    path = "/home/neil/.local/share/nvim/site/pack/packer/start/impatient.nvim",
+    url = "https://github.com/lewis6991/impatient.nvim"
+  },
+  ["indent-blankline.nvim"] = {
+    loaded = true,
+    path = "/home/neil/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
+    url = "https://github.com/lukas-reineke/indent-blankline.nvim"
+  },
   ["nvim-autopairs"] = {
     loaded = true,
     path = "/home/neil/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
@@ -213,6 +223,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neil/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
+  },
+  ["vim-bbye"] = {
+    loaded = true,
+    path = "/home/neil/.local/share/nvim/site/pack/packer/start/vim-bbye",
+    url = "https://github.com/moll/vim-bbye"
+  },
+  ["vim-illuminate"] = {
+    loaded = true,
+    path = "/home/neil/.local/share/nvim/site/pack/packer/start/vim-illuminate",
+    url = "https://github.com/RRethy/vim-illuminate"
   }
 }
 
