@@ -110,7 +110,11 @@ return packer.startup(function(use)
 
   use { "moll/vim-bbye", commit = "25ef93ac5a87526111f43e5110675032dbcacf56" }
 
-  use { "RRethy/vim-illuminate", commit = "c82e6d04f27a41d7fdcad9be0bce5bb59fcb78e5" }
+
+
+
+  use "norcalli/nvim-colorizer.lua"
+
 
 
 
