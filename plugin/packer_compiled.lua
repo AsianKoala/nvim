@@ -209,6 +209,11 @@ _G.packer_plugins = {
     path = "/home/neil/.local/share/nvim/site/pack/packer/start/pywal",
     url = "https://github.com/AlphaTechnolog/pywal.nvim"
   },
+  ["suda.vim"] = {
+    loaded = true,
+    path = "/home/neil/.local/share/nvim/site/pack/packer/start/suda.vim",
+    url = "https://github.com/lambdalisue/suda.vim"
+  },
   ["telescope-media-files.nvim"] = {
     loaded = true,
     path = "/home/neil/.local/share/nvim/site/pack/packer/start/telescope-media-files.nvim",
@@ -233,6 +238,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neil/.local/share/nvim/site/pack/packer/start/vim-bbye",
     url = "https://github.com/moll/vim-bbye"
+  },
+  ["vim-startuptime"] = {
+    loaded = true,
+    path = "/home/neil/.local/share/nvim/site/pack/packer/start/vim-startuptime",
+    url = "https://github.com/dstein64/vim-startuptime"
   }
 }
 

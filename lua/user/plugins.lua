@@ -116,6 +116,8 @@ return packer.startup(function(use)
   use "norcalli/nvim-colorizer.lua"
 
 
+  use "lambdalisue/suda.vim"
+  use "dstein64/vim-startuptime"
 
 
 
