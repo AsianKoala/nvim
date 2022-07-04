@@ -107,9 +107,9 @@ id_gen:close()
 local id_1 = tostring(tonumber(id) - 1)
 local id_2 = tostring(tonumber(id) - 2)
 
-local phrase_gen = io.popen('sh "$HOME"/scripts/other/random_4chin_word.sh | tr -d "\n"')
-local phrase = phrase_gen:read("*a")
-phrase_gen:close()
+-- local phrase_gen = io.popen('sh "$HOME"/scripts/other/random_4chin_word.sh | tr -d "\n"')
+-- local phrase = phrase_gen:read("*a")
+-- phrase_gen:close()
 
 local heading = {
 	type = "text",
@@ -156,14 +156,14 @@ local pre_foot_2 = {
 	},
 }
 
-local footer_2 = {
-	type = "text",
-	val = " " .. phrase .. "      ",
-	opts = {
-		position = "center",
-		hl = "AlphaFooter",
-	},
-}
+-- local footer_2 = {
+-- 	type = "text",
+-- 	val = " " .. phrase .. "      ",
+-- 	opts = {
+-- 		position = "center",
+-- 		hl = "AlphaFooter",
+-- 	},
+-- }
 
 local function button(sc, txt, keybind)
 	local sc_ = sc:gsub("%s", ""):gsub("SPC", "<leader>")
@@ -219,7 +219,7 @@ local section = {
 	pre_foot = pre_foot,
 	footer = footer,
 	pre_foot_2 = pre_foot_2,
-	footer_2 = footer_2,
+	-- footer_2 = footer_2,
 }
 
 local opts = {
