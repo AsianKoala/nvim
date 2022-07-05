@@ -13,6 +13,9 @@ local tree_cb = nvim_tree_config.nvim_tree_callback
 nvim_tree.setup {
   -- disable_netrw = true,
   -- hijack_netrw = true,
+  git = {
+    ignore = false -- show files that are in .gitignore
+  },
   update_focused_file = {
     enable = true,
     update_cwd = true,
@@ -40,7 +43,7 @@ nvim_tree.setup {
           renamed = "➜",
           untracked = "U",
           deleted = "",
-          ignored = "◌",
+          ignored = "I",
         },
       },
     },
