@@ -203,6 +203,7 @@ local buttons = {
   button("f", ">find file", ":Telescope find_files <CR>"),
   button("p", ">find project", ":lua require('telescope').extensions.projects.projects()<CR>"),
   button("r", ">recent files", ":Telescope oldfiles <CR>"),
+  button("s", ">scratchpad", ":e ~/documents/scratchpad <CR>"),
   button("c", ">config", ":e ~/.config/nvim/init.lua <CR>"),
   button("q", ">quit", ":qa<CR>"),
 	},
