@@ -154,6 +154,11 @@ _G.packer_plugins = {
     path = "/home/neil/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
     url = "https://github.com/iamcco/markdown-preview.nvim"
   },
+  ["null-ls.nvim"] = {
+    loaded = true,
+    path = "/home/neil/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
+  },
   ["nvim-autopairs"] = {
     loaded = true,
     path = "/home/neil/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
@@ -214,6 +219,11 @@ _G.packer_plugins = {
     path = "/home/neil/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
+  ["presence.nvim"] = {
+    loaded = true,
+    path = "/home/neil/.local/share/nvim/site/pack/packer/start/presence.nvim",
+    url = "https://github.com/andweeb/presence.nvim"
+  },
   ["project.nvim"] = {
     loaded = true,
     path = "/home/neil/.local/share/nvim/site/pack/packer/start/project.nvim",
@@ -243,6 +253,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neil/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
+  },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/home/neil/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
   },
   ["vim-bbye"] = {
     loaded = true,

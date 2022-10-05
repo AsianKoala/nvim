@@ -60,6 +60,7 @@ return packer.startup(function(use)
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use { "jose-elias-alvarez/null-ls.nvim", commit = "ff40739e5be6581899b43385997e39eecdbf9465" } -- for formatters and linters
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
@@ -117,6 +118,9 @@ return packer.startup(function(use)
       run = function() vim.fn["mkdp#util#install"]() end,
   })
 
+
+  -- Discord Rich Prescense
+  use 'andweeb/presence.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
