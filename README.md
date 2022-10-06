@@ -15,7 +15,7 @@
 
 If on Arch, here is the command to install the required packages.
 
-`yay -S python python-pywal fzf ripgrep texlive-most zathura 
+`yay -S python python-pywal fzf ripgrep pandoc texlive-most zathura 
 zathura-pdf-mupdf nerd-fonts-ibm-plex-mono`
 
 ## Install
