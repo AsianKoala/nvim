@@ -11,8 +11,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
     "https://github.com/wbthomason/packer.nvim",
     install_path,
   }
-  print "Installing packer close and reopen Neovim..."
-  vim.cmd [[packadd packer.nvim]]
+  print "Installing packer close and reopen Neovim..." vim.cmd [[packadd packer.nvim]]
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
@@ -121,6 +120,10 @@ return packer.startup(function(use)
 
   -- Discord Rich Prescense
   use 'andweeb/presence.nvim'
+
+  -- LaTeX
+  use 'lervag/vimtex'
+  use 'mhinz/neovim-remote'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

@@ -154,6 +154,11 @@ _G.packer_plugins = {
     path = "/home/neil/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
     url = "https://github.com/iamcco/markdown-preview.nvim"
   },
+  ["neovim-remote"] = {
+    loaded = true,
+    path = "/home/neil/.local/share/nvim/site/pack/packer/start/neovim-remote",
+    url = "https://github.com/mhinz/neovim-remote"
+  },
   ["null-ls.nvim"] = {
     loaded = true,
     path = "/home/neil/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
@@ -254,11 +259,6 @@ _G.packer_plugins = {
     path = "/home/neil/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
   },
-  ["tokyonight.nvim"] = {
-    loaded = true,
-    path = "/home/neil/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
-    url = "https://github.com/folke/tokyonight.nvim"
-  },
   ["vim-bbye"] = {
     loaded = true,
     path = "/home/neil/.local/share/nvim/site/pack/packer/start/vim-bbye",
@@ -268,6 +268,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neil/.local/share/nvim/site/pack/packer/start/vim-startuptime",
     url = "https://github.com/dstein64/vim-startuptime"
+  },
+  vimtex = {
+    loaded = true,
+    path = "/home/neil/.local/share/nvim/site/pack/packer/start/vimtex",
+    url = "https://github.com/lervag/vimtex"
   }
 }
 

@@ -87,3 +87,9 @@ keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
 -- Close buffers
 keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
+
+
+keymap("i", "<C-n>", "<Plug>luasnip-next-choice", {})
+keymap("s", "<C-n>", "<Plug>luasnip-next-choice", {})
+keymap("i", "<C-p>", "<Plug>luasnip-prev-choice", {})
+keymap("s", "<C-p>", "<Plug>luasnip-prev-choice", {})
