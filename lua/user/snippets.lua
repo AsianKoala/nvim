@@ -310,7 +310,7 @@ ls.add_snippets("all", {
 	),
 
 	-- When regTrig is set, trig is treated like a pattern, this snippet will expand after any number.
-	ls.parser.parse_snippet({ trig = "%d", regTrig = true }, "A Number!!"),
+	-- ls.parser.parse_snippet({ trig = "%d", regTrig = true }, "A Number!!"),
 	-- Using the condition, it's possible to allow expansion only in specific cases.
 	s("cond", {
 		t("will only expand in c-style comments"),
@@ -508,7 +508,7 @@ ls.add_snippets("tex", {
 	}),
   
   s("ff", {
-    t("\\frac{"), i(1), t("}{"), rep(1), t("}"),
+    t("\\frac{"), i(1), t("}{"), i(2), t("}"),
   }),
 
   s("beg", {
@@ -531,6 +531,28 @@ ls.add_snippets("tex", {
       "\t\\end{varwidth}}",
       "\\end{center}"
     })
+  }),
+
+  s("eq", {
+    t({"\\begin{equation*}", "\t"}),
+    i(1),
+    t({"", "\\end{equation*}"})
+  }),
+
+  s("mt", {
+    t("$ "), i(1), t(" $")
+  }),
+
+  s("pd", {
+    t("\\frac{\\partial "), i(1), t("}{\\partial "), i(2), t("}")
+  }),
+
+  s("ve", {
+    t("\\langle "), i(1), t(","), i(2), t(" \\rangle")
+  }),
+
+  s("vc", {
+    t("\\bm{\\vec{"), i(1), t("}}")
   })
 }, {
 	key = "tex",
