@@ -1,3 +1,1 @@
-local pywal = require('pywal')
-
-pywal.setup()
+require('pywal').setup()

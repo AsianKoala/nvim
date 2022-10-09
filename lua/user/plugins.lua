@@ -119,7 +119,7 @@ return packer.startup(function(use)
 
 
   -- Discord Rich Prescense
-  use 'andweeb/presence.nvim'
+  -- use 'andweeb/presence.nvim'
 
   -- LaTeX
   use 'lervag/vimtex'
