@@ -11,8 +11,8 @@
 - some [nerd font](https://github.com/ryanoasis/nerd-fonts) for icons
 
 ## Install
-Make sure you have the neovim 0.7.0+ installed.  
-Note that neovim 0.8 breaks my config for some reason.  
+**Guaranteed** to work on neovim v0.7.2  
+v0.8.0+ breaks my config. Looking to fix this when I get time.
 
 Clone this under your ~/.config/nvim directory
 
@@ -20,4 +20,4 @@ Clone this under your ~/.config/nvim directory
 git clone https://github.com/AsianKoala/nvim.git ~/.config/nvim
 ```
 
-Then run `nvim` and `:PackerInstall` to set everything up.
+Then inside neovim run `:PackerSync` to set everything up.
