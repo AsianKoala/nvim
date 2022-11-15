@@ -49,7 +49,7 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
-  use "hrsh7th/cmp-nvim-lsp"
+  use { "hrsh7th/cmp-nvim-lsp", commit = "affe808a5c56b71630f17aa7c38e15c59fd648a8"}
   use "hrsh7th/cmp-nvim-lua"
 
   -- snippets
@@ -116,14 +116,15 @@ return packer.startup(function(use)
       "iamcco/markdown-preview.nvim",
       run = function() vim.fn["mkdp#util#install"]() end,
   })
-
-
-  -- Discord Rich Prescense
-  -- use 'andweeb/presence.nvim'
-
-  -- LaTeX
   use 'lervag/vimtex'
   use 'mhinz/neovim-remote'
+
+  -- Competitive Programming
+  use {
+    'xeluxee/competitest.nvim',
+    requires = 'MunifTanjim/nui.nvim',
+    config = function() require'competitest'.setup() end
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

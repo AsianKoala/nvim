@@ -20,3 +20,4 @@ require "user.colorizer"
 require "user.lualine"
 require "user.vimtex"
 require "user.snippets"
+require 'user.competitest'
