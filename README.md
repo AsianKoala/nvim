@@ -4,13 +4,10 @@
 ![image](https://i.imgur.com/HDT9oiZ.png)
 
 ## Requirements
-- python
-- pywal
-- fzf
-- ripgrep
-- pandoc
-- latex
-- zathura
+- python3
+- `pywal` for my colorscheme
+- `fzf, ripgrep` for `Telescope`
+- `pandoc, latex, zathura` for `VimTeX`
 - some [nerd font](https://github.com/ryanoasis/nerd-fonts) for icons
 
 ## Install
