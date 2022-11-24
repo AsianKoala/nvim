@@ -6,7 +6,7 @@
 ## Requirements
 - python3
 - `pywal` for my colorscheme
-- `fzf, ripgrep` for `Telescope`
+- `ripgrep` for `Telescope`
 - `pandoc, latex, zathura` for `VimTeX`
 - some [nerd font](https://github.com/ryanoasis/nerd-fonts) for icons
 
