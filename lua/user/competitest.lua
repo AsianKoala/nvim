@@ -72,7 +72,7 @@ competitest.setup {
 	split_ui = {
 		position = "right",
 		relative_to_editor = true,
-		total_width = 0.3,
+		total_width = 0.5,
 		vertical_layout = {
 			{ 1, "tc" },
 			{ 1, { { 1, "so" }, { 1, "eo" } } },
