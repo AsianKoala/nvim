@@ -40,4 +40,6 @@ luac.out
 *.hex
 
 
-# plugin/packer_compiled.lua
+plugin/packer_compiled.lua
+java-debug/
+vscode-java-test/
