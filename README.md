@@ -5,7 +5,7 @@
 
 ## Requirements
 - python3
-- ~~`pywal` for my colorscheme~~ Now deprecated
+- ~~`pywal` for my colorscheme~~ Deprecated, currently use a different colorscheme
 - `ripgrep` for `Telescope`
 - `pandoc, latex, zathura` for `VimTeX`
 - some [nerd font](https://github.com/ryanoasis/nerd-fonts) for icons
