@@ -280,42 +280,92 @@ return {
 using namespace std;
 
 #define ll long long
-#define pii pair<int, int>
-#define pll pair<long long, long long>
+#define pi pair<int, int>
+#define pl pair<long long, long long>
 #define vi vector<int>
-#define vll vector<long long>
-#define vvi vector<vector<int>>
-#define vb vector<bool>
-#define vvb vector<vector<bool>>
+#define vl vector<ll>
+#define vvi vector<vi>
+#define vvl vector<vl>
+#define vpi vector<pi>
+#define vpl vector<pl>
 #define vs vector<string>
-#define vpi vector<pair<int, int>>
-#define pb push_back
-#define mp make_pair
-#define FOR(i, j, k) for (int i=j ; i<k ; i++)
-#define REP(i, j) FOR(i, 0, j)
-#define ALL(x) x.begin(), x.end()
-#define RALL(x) x.rbegin(), x.rend()
-#define GCD(a, b) __gcd(a, b)
-#define LCM(a, b) (a*b/gcd(a, b))
-#define CEIL(a,b) ((a + b - 1) / b)
-#define INF (int)1e9
-#define NMOD(k, n) (((k %= n) < 0) ? k+n : k)
+#define vb vector<bool>
+#define vvb vector<vb>
+#define rep(i, n) for(int i = 0; i < n; i++)
+#define all(x) x.begin(), x.end()
 
-void setIO(string name = "") {}
+template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
+template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
+
+void setIO(string name = "") {
 	cin.tie(0)->sync_with_stdio(0);
-	if (name.size()) {}
+	if (name.size()) {
 		freopen((name + ".in").c_str(), "r", stdin);
 		freopen((name + ".out").c_str(), "w", stdout);
-  {}
-{}
+  }
+}
 
-int main() {}
+int main() {
   setIO("");
-  {}
-{}
+  @!
+}
           ]],
             {
-              "{", "{", "}", "}", "{", i(1), "}"
+              i(1)
+            },
+            {
+              delimiters = "@!"
+            }
+          )
+        ),
+
+        s(
+          "lc",
+          fmt(
+            [[
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define pi pair<int, int>
+#define pl pair<long long, long long>
+#define vi vector<int>
+#define vl vector<ll>
+#define vvi vector<vi>
+#define vb vector<bool>
+#define vvb vector<vb>
+#define vs vector<string>
+#define vpi vector<pi>
+#define vpl vector<pl>
+#define pb push_back
+#define mp make_pair
+#define rep(i, j) for(int i = 0; i < j; i++)
+#define all(x) x.begin(), x.end()
+#define rall(x) x.rbegin(), x.rend()
+#define inf (int)1e9
+#define nmod(x, m) ((x % m + m) % m)
+
+template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
+template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
+
+void setIO(string name = "") {
+	cin.tie(0)->sync_with_stdio(0);
+	if (name.size()) {
+		freopen((name + ".in").c_str(), "r", stdin);
+		freopen((name + ".out").c_str(), "w", stdout);
+  }
+}
+
+class Solution {
+public:
+  @!
+};
+          ]],
+            {
+              i(1)
+            },
+            {
+              delimiters = "@!"
             }
           )
         ),
