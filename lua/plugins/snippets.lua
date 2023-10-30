@@ -291,7 +291,6 @@ using namespace std;
 #define vs vector<string>
 #define vb vector<bool>
 #define vvb vector<vb>
-#define rep(i, n) for(int i = 0; i < n; i++)
 #define all(x) x.begin(), x.end()
 
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
