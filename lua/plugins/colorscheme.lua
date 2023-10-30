@@ -12,12 +12,20 @@ return {
       --   "rktjmp/lush.nvim"
       -- }
     },
-    config = function ()
-      vim.g.tokyodark_transparent_background = false
-      vim.g.tokyodark_enable_italic_comment = true
-      vim.g.tokyodark_enable_italic = false
-      vim.g.tokyodark_color_gamma = "0.9"
-      vim.cmd([[colorscheme tokyodark]])
-    end
+    opts = {
+      transparent_background = false,
+      gamma = 0.85,
+      styles = {
+        comments = { italic = false },
+        keywords = { italic = false },
+        identifiers = { italic = false },
+        functions = { italic = false },
+        variables = { italic = false }
+      }
+    },
+    config = function(_, opts)
+      require("tokyodark").setup(opts)
+      vim.cmd [[colorscheme tokyodark]]
+    end,
   },
 }
