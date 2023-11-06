@@ -317,48 +317,27 @@ int main() {
             }
           )
         ),
-
         s(
-          "lc",
-          fmt(
-            [[
-#include <bits/stdc++.h>
-using namespace std;
-
-#define ll long long
-#define pi pair<int, int>
-#define pl pair<long long, long long>
-#define vi vector<int>
-#define vl vector<ll>
-#define vvi vector<vi>
-#define vb vector<bool>
-#define vvb vector<vb>
-#define vs vector<string>
-#define vpi vector<pi>
-#define vpl vector<pl>
-#define pb push_back
-#define mp make_pair
-#define rep(i, j) for(int i = 0; i < j; i++)
-#define all(x) x.begin(), x.end()
-#define rall(x) x.rbegin(), x.rend()
-#define inf (int)1e9
-#define nmod(x, m) ((x % m + m) % m)
-
-template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
-template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
-
-void setIO(string name = "") {
-	cin.tie(0)->sync_with_stdio(0);
-	if (name.size()) {
-		freopen((name + ".in").c_str(), "r", stdin);
-		freopen((name + ".out").c_str(), "w", stdout);
+          "cpfact",
+          fmt([[
+vpi factorize(int n) {
+  vpi res;
+  for(int i = 2; i * i <= n; i++) {
+    if(n % i == 0) {
+      int cnt = 0;
+      while(n % i == 0) {
+        n /= i;
+        cnt++;
+      }
+      res.push_back({i, cnt});
+    }
   }
+  if(n > 1) {
+    res.push_back({n, 1});
+  }
+  return res;
 }
-
-class Solution {
-public:
-  @!
-};
+@!
           ]],
             {
               i(1)
@@ -368,6 +347,114 @@ public:
             }
           )
         ),
+        s(
+          "cpbinpow",
+          fmt([[
+ll binpow(ll a, ll b) {
+  ll res = 1;
+  while(b > 0) {
+    if(b & 1) {
+      res *= a;
+    }
+    a *= a;
+    b >>= 1;
+  }
+  return res;
+}
+@!
+          ]],
+            {
+              i(1)
+            },
+            {
+              delimiters = "@!"
+            }
+          )
+        ),
+        s(
+          "cpsegtree",
+          fmt([[
+const int MAXN = 1e5 + 5;
+int n, t[4*MAXN];
+
+void build(int a[], int v, int tl, int tr) {
+    if (tl == tr) {
+        t[v] = a[tl];
+    } else {
+        int tm = (tl + tr) / 2;
+        build(a, v*2, tl, tm);
+        build(a, v*2+1, tm+1, tr);
+        t[v] = t[v*2] + t[v*2+1];
+    }
+}
+
+int sum(int v, int tl, int tr, int l, int r) {
+    if (l > r) 
+        return 0;
+    if (l == tl && r == tr) {
+        return t[v];
+    }
+    int tm = (tl + tr) / 2;
+    return sum(v*2, tl, tm, l, min(r, tm))
+           + sum(v*2+1, tm+1, tr, max(l, tm+1), r);
+}
+
+void update(int v, int tl, int tr, int pos, int new_val) {
+    if (tl == tr) {
+        t[v] = new_val;
+    } else {
+        int tm = (tl + tr) / 2;
+        if (pos <= tm)
+            update(v*2, tl, tm, pos, new_val);
+        else
+            update(v*2+1, tm+1, tr, pos, new_val);
+        t[v] = t[v*2] + t[v*2+1];
+    }
+}
+@!
+          ]],
+            {
+              i(1)
+            },
+            {
+              delimiters = "@!"
+            }
+          )
+        ),
+        s(
+          "cpdsu",
+          fmt([[
+struct DSU {
+	vector<int> e;
+	DSU(int N) { e = vector<int>(N, -1); }
+
+	// get representive component (uses path compression)
+	int get(int x) { return e[x] < 0 ? x : e[x] = get(e[x]); }
+
+	bool same_set(int a, int b) { return get(a) == get(b); }
+
+	int size(int x) { return -e[get(x)]; }
+
+	bool unite(int x, int y) {  // union by size
+		x = get(x), y = get(y);
+		if (x == y) return false;
+		if (e[x] > e[y]) swap(x, y);
+		e[x] += e[y];
+		e[y] = x;
+		return true;
+	}
+};
+@!
+          ]],
+            {
+              i(1)
+            },
+            {
+              delimiters = "@!"
+            }
+          )
+        ),
+
       }, {
           key = "cpp"
       }

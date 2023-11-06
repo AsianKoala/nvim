@@ -21,7 +21,7 @@ return {
 
   {
     "nvim-telescope/telescope.nvim",
-    commit = "203bf5609137600d73e8ed82703d6b0e320a5f36",
+    commit = "7011eaae0ac1afe036e30c95cf80200b8dc3f21a",
     event = "VeryLazy",
     cmd = { "Telescope" },
     dependencies = {
