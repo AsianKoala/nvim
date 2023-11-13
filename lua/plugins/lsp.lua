@@ -32,10 +32,6 @@ return {
 
       local lspconfig = require "lspconfig"
       local on_attach = function(client, bufnr)
-        if client.name == "tsserver" then
-          client.server_capabilities.documentFormattingProvider = false
-        end
-
         if client.name == "sumneko_lua" then
           client.server_capabilities.documentFormattingProvider = false
         end
@@ -135,4 +131,17 @@ return {
     branch = 'legacy',
     opts = { window = { blend = 0 } },
   },
+
+  -- typescript drop in replacement
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {
+      settings = {
+        tsserver_plugins = {
+          "@styled/typescript-styled-plugin",
+        },
+      }
+    },
+  }
 }
