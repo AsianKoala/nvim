@@ -276,26 +276,49 @@ return {
           "cp",
           fmt(
             [[
+// ⣿⡟⠙⠛⠋⠩⠭⣉⡛⢛⠫⠭⠄⠒⠄⠄⠄⠈⠉⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+// ⣿⡇⠄⠄⠄⠄⣠⠖⠋⣀⡤⠄⠒⠄⠄⠄⠄⠄⠄⠄⠄⠄⣈⡭⠭⠄⠄⠄⠉⠙
+// ⣿⡇⠄⠄⢀⣞⣡⠴⠚⠁⠄⠄⢀⠠⠄⠄⠄⠄⠄⠄⠄⠉⠄⠄⠄⠄⠄⠄⠄⠄
+// ⣿⡇⠄⡴⠁⡜⣵⢗⢀⠄⢠⡔⠁⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄
+// ⣿⡇⡜⠄⡜⠄⠄⠄⠉⣠⠋⠠⠄⢀⡄⠄⠄⣠⣆⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢸
+// ⣿⠸⠄⡼⠄⠄⠄⠄⢰⠁⠄⠄⠄⠈⣀⣠⣬⣭⣛⠄⠁⠄⡄⠄⠄⠄⠄⠄⢀⣿
+// ⣏⠄⢀⠁⠄⠄⠄⠄⠇⢀⣠⣴⣶⣿⣿⣿⣿⣿⣿⡇⠄⠄⡇⠄⠄⠄⠄⢀⣾⣿
+// ⣿⣸⠈⠄⠄⠰⠾⠴⢾⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⢁⣾⢀⠁⠄⠄⠄⢠⢸⣿⣿
+// ⣿⣿⣆⠄⠆⠄⣦⣶⣦⣌⣿⣿⣿⣿⣷⣋⣀⣈⠙⠛⡛⠌⠄⠄⠄⠄⢸⢸⣿⣿
+// ⣿⣿⣿⠄⠄⠄⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠈⠄⠄⠄⠄⠄⠈⢸⣿⣿
+// ⣿⣿⣿⠄⠄⠄⠘⣿⣿⣿⡆⢀⣈⣉⢉⣿⣿⣯⣄⡄⠄⠄⠄⠄⠄⠄⠄⠈⣿⣿
+// ⣿⣿⡟⡜⠄⠄⠄⠄⠙⠿⣿⣧⣽⣍⣾⣿⠿⠛⠁⠄⠄⠄⠄⠄⠄⠄⠄⠃⢿⣿
+// ⣿⡿⠰⠄⠄⠄⠄⠄⠄⠄⠄⠈⠉⠩⠔⠒⠉⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠐⠘⣿
+// ⣿⠃⠃⠄⠄⠄⠄⠄⠄⣀⢀⠄⠄⡀⡀⢀⣤⣴⣤⣤⣀⣀⠄⠄⠄⠄⠄⠄⠁⢹
+
 #include <bits/stdc++.h>
 using namespace std;
 
-#define ll long long
+#define int long long
 #define pi pair<int, int>
-#define pl pair<long long, long long>
-#define vi vector<int>
-#define vl vector<ll>
-#define vvi vector<vi>
-#define vvl vector<vl>
-#define vpi vector<pi>
-#define vpl vector<pl>
-#define vs vector<string>
-#define vb vector<bool>
-#define vvb vector<vb>
+#define vt vector
+#define vi vt<int>
+#define vs vt<string>
+#define vb vt<bool>
 #define rep(i, n) for(int i = 0; i < n; i++)
 #define all(x) x.begin(), x.end()
+#define f first
+#define s second
+#define pb push_back
 
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
+
+template<class T> using pq = priority_queue<T>;
+template<class T> using pqg = priority_queue<T, vector<T>, greater<T>>;
+
+template<class T, class... Args>
+auto create(size_t n, Args&&... args) {
+	if constexpr(sizeof...(args) == 1)
+		return vector<T>(n, args...);
+	else
+		return vector(n, create<T>(args...));
+}
 
 void setIO(string name = "") {
 	cin.tie(0)->sync_with_stdio(0);
@@ -305,9 +328,16 @@ void setIO(string name = "") {
   }
 }
 
-int main() {
-  setIO("");
+void solve() {
   @!
+}
+
+signed main() {
+  setIO("");
+  int t; cin >> t;
+  while(t--) {
+    solve();
+  }
 }
           ]],
             {
@@ -375,43 +405,33 @@ ll binpow(ll a, ll b) {
         s(
           "cpsegtree",
           fmt([[
-const int MAXN = 1e5 + 5;
-int n, t[4*MAXN];
+template <class T> class MinSegmentTree {
+  private:
+	const T DEFAULT = std::numeric_limits<T>().max();
+	vector<T> segtree;
+	int len;
 
-void build(int a[], int v, int tl, int tr) {
-    if (tl == tr) {
-        t[v] = a[tl];
-    } else {
-        int tm = (tl + tr) / 2;
-        build(a, v*2, tl, tm);
-        build(a, v*2+1, tm+1, tr);
-        t[v] = t[v*2] + t[v*2+1];
-    }
-}
+  public:
+    MinSegmentTree(int len) : len(len), segtree(len * 2, DEFAULT) {}
 
-int sum(int v, int tl, int tr, int l, int r) {
-    if (l > r) 
-        return 0;
-    if (l == tl && r == tr) {
-        return t[v];
-    }
-    int tm = (tl + tr) / 2;
-    return sum(v*2, tl, tm, l, min(r, tm))
-           + sum(v*2+1, tm+1, tr, max(l, tm+1), r);
-}
+	void set(int ind, T val) {
+		ind += len;
+		segtree[ind] = val;
+		for (; ind > 1; ind /= 2) {
+			segtree[ind / 2] = std::min(segtree[ind], segtree[ind ^ 1]);
 
-void update(int v, int tl, int tr, int pos, int new_val) {
-    if (tl == tr) {
-        t[v] = new_val;
-    } else {
-        int tm = (tl + tr) / 2;
-        if (pos <= tm)
-            update(v*2, tl, tm, pos, new_val);
-        else
-            update(v*2+1, tm+1, tr, pos, new_val);
-        t[v] = t[v*2] + t[v*2+1];
-    }
-}
+		}
+	}
+
+	T range_min(int start, int end) {
+		T min = DEFAULT;
+		for (start += len, end += len; start < end; start /= 2, end /= 2) {
+			if (start % 2 == 1) { min = std::min(min, segtree[start++]); }
+			if (end % 2 == 1) { min = std::min(min, segtree[--end]); }
+		}
+		return min;
+	}
+};
 @!
           ]],
             {
@@ -445,6 +465,23 @@ struct DSU {
 		return true;
 	}
 };
+@!
+          ]],
+            {
+              i(1)
+            },
+            {
+              delimiters = "@!"
+            }
+          )
+        ),
+        s(
+          "cppbds",
+          fmt([[
+#include <ext/pb_ds/assoc_container.hpp>
+using namespace __gnu_pbds;
+
+template<typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 @!
           ]],
             {
