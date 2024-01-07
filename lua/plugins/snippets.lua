@@ -300,11 +300,10 @@ using namespace std;
 #define vi vt<int>
 #define vs vt<string>
 #define vb vt<bool>
+#define pb push_back
 #define rep(i, n) for(int i = 0; i < n; i++)
 #define all(x) x.begin(), x.end()
-#define f first
-#define s second
-#define pb push_back
+#define nl "\n"
 
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
@@ -392,79 +391,6 @@ ll binpow(ll a, ll b) {
   }
   return res;
 }
-@!
-          ]],
-            {
-              i(1)
-            },
-            {
-              delimiters = "@!"
-            }
-          )
-        ),
-        s(
-          "cpsegtree",
-          fmt([[
-template <class T> class MinSegmentTree {
-  private:
-	const T DEFAULT = std::numeric_limits<T>().max();
-	vector<T> segtree;
-	int len;
-
-  public:
-    MinSegmentTree(int len) : len(len), segtree(len * 2, DEFAULT) {}
-
-	void set(int ind, T val) {
-		ind += len;
-		segtree[ind] = val;
-		for (; ind > 1; ind /= 2) {
-			segtree[ind / 2] = std::min(segtree[ind], segtree[ind ^ 1]);
-
-		}
-	}
-
-	T range_min(int start, int end) {
-		T min = DEFAULT;
-		for (start += len, end += len; start < end; start /= 2, end /= 2) {
-			if (start % 2 == 1) { min = std::min(min, segtree[start++]); }
-			if (end % 2 == 1) { min = std::min(min, segtree[--end]); }
-		}
-		return min;
-	}
-};
-@!
-          ]],
-            {
-              i(1)
-            },
-            {
-              delimiters = "@!"
-            }
-          )
-        ),
-        s(
-          "cpdsu",
-          fmt([[
-struct DSU {
-	vector<int> e;
-	DSU(int N) { e = vector<int>(N, -1); }
-
-	// get representive component (uses path compression)
-	int get(int x) { return e[x] < 0 ? x : e[x] = get(e[x]); }
-
-	bool same_set(int a, int b) { return get(a) == get(b); }
-
-	int size(int x) { return -e[get(x)]; }
-
-	bool unite(int x, int y) {  // union by size
-		x = get(x), y = get(y);
-		if (x == y) return false;
-		if (e[x] > e[y]) swap(x, y);
-		e[x] += e[y];
-		e[y] = x;
-		return true;
-	}
-};
 @!
           ]],
             {
