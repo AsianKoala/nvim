@@ -255,5 +255,10 @@ return {
         color_square_width = 2,
       })
     end,
+  },
+  {
+    "https://github.com/Aasim-A/scrollEOF.nvim",
+    event = { 'CursorMoved', 'WinScrolled' },
+    opts = {},
   }
 }

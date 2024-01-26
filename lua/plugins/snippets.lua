@@ -172,44 +172,6 @@ return {
         return snip
       end
 
-      ls.add_snippets("java", {
-        -- Very long example for a java class.
-        s("fn", {
-          d(6, jdocsnip, { 2, 4, 5 }),
-          t({ "", "" }),
-          c(1, {
-            t("public "),
-            t("private "),
-          }),
-          c(2, {
-            t("void"),
-            t("String"),
-            t("char"),
-            t("int"),
-            t("double"),
-            t("boolean"),
-            i(nil, ""),
-          }),
-          t(" "),
-          i(3, "myFunc"),
-          t("("),
-          i(4),
-          t(")"),
-          c(5, {
-            t(""),
-            sn(nil, {
-              t({ "", " throws " }),
-              i(1),
-            }),
-          }),
-          t({ " {", "\t" }),
-          i(0),
-          t({ "", "}" }),
-        }),
-      }, {
-        key = "java",
-      })
-
       ls.add_snippets("tex", {
         -- rec_ls is self-referencing. That makes this snippet 'infinite' eg. have as many
         -- \item as necessary by utilizing a choiceNode.
@@ -294,30 +256,29 @@ return {
 #include <bits/stdc++.h>
 using namespace std;
 
+#include <ext/pb_ds/assoc_container.hpp>
+using namespace __gnu_pbds;
+
+template<typename T> using ordered_set = 
+tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+
 #define int long long
 #define pi pair<int, int>
 #define vt vector
 #define vi vt<int>
 #define vs vt<string>
 #define vb vt<bool>
+#define vp vt<pi>
 #define pb push_back
 #define rep(i, n) for(int i = 0; i < n; i++)
 #define all(x) x.begin(), x.end()
-#define nl "\n"
+#define endl "\n"
 
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
 template<class T> using pq = priority_queue<T>;
 template<class T> using pqg = priority_queue<T, vector<T>, greater<T>>;
-
-template<class T, class... Args>
-auto create(size_t n, Args&&... args) {
-	if constexpr(sizeof...(args) == 1)
-		return vector<T>(n, args...);
-	else
-		return vector(n, create<T>(args...));
-}
 
 void setIO(string name = "") {
 	cin.tie(0)->sync_with_stdio(0);
@@ -327,16 +288,9 @@ void setIO(string name = "") {
   }
 }
 
-void solve() {
-  @!
-}
-
 signed main() {
   setIO("");
-  int t; cin >> t;
-  while(t--) {
-    solve();
-  }
+  @!
 }
           ]],
             {
@@ -348,73 +302,38 @@ signed main() {
           )
         ),
         s(
-          "cpfact",
-          fmt([[
-vpi factorize(int n) {
-  vpi res;
-  for(int i = 2; i * i <= n; i++) {
-    if(n % i == 0) {
-      int cnt = 0;
-      while(n % i == 0) {
-        n /= i;
-        cnt++;
-      }
-      res.push_back({i, cnt});
-    }
-  }
-  if(n > 1) {
-    res.push_back({n, 1});
-  }
-  return res;
-}
-@!
+          "mint",
+          fmt(
+            [[
+template<int MOD> struct mint {
+  int v; 
+  explicit operator int() const { return v; } 
+  mint():v(0) {}
+  mint(int _v):v(_v%MOD) { v += (v < 0) * MOD; }
+  mint& operator+=(mint o) { if ((v += o.v) >= MOD) v -= MOD; return *this; }
+  mint& operator-=(mint o) { if ((v -= o.v) < 0) v += MOD; return *this; }
+  mint& operator*=(mint o) { v = v * o.v % MOD; return *this; }
+  mint& operator++() { return *this += 1; }
+  mint& operator--() { return *this -= 1; }
+  mint operator-() const { return mint(-v); }
+  friend mint pow(mint a, int p) { assert(p >= 0); return p == 0 ? 1: pow(a * a, p / 2) * (p & 1 ? a : 1); }
+  friend mint inv(mint a) { assert(a.v != 0); return pow(a , MOD - 2); }
+  friend mint operator+(mint a, mint b) { return a += b; }
+  friend mint operator-(mint a, mint b) { return a -= b; }
+  friend mint operator*(mint a, mint b) { return a *= b; }
+  friend ostream& operator<<(ostream &out, mint &a) { out << a.v; return out; }
+  friend istream& operator>>(istream &in, mint &a) { in >> a.v; return in; }
+};
+const int mod = 1e9 + 7;
+using Z = mint<mod>;
+using vmi = vector<Z>;
+@`
           ]],
             {
               i(1)
             },
             {
-              delimiters = "@!"
-            }
-          )
-        ),
-        s(
-          "cpbinpow",
-          fmt([[
-ll binpow(ll a, ll b) {
-  ll res = 1;
-  while(b > 0) {
-    if(b & 1) {
-      res *= a;
-    }
-    a *= a;
-    b >>= 1;
-  }
-  return res;
-}
-@!
-          ]],
-            {
-              i(1)
-            },
-            {
-              delimiters = "@!"
-            }
-          )
-        ),
-        s(
-          "cppbds",
-          fmt([[
-#include <ext/pb_ds/assoc_container.hpp>
-using namespace __gnu_pbds;
-
-template<typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
-@!
-          ]],
-            {
-              i(1)
-            },
-            {
-              delimiters = "@!"
+              delimiters = "@`"
             }
           )
         ),
@@ -425,57 +344,10 @@ template<typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag
     )
 
 
+      require("luasnip.loaders.from_vscode").load({ include = { "python", "html", "typescript", "javascript" } })
 
-      -- set type to "autosnippets" for adding autotriggered snippets.
-      -- ls.add_snippets("all", {
-      -- 	s("autotrigger", {
-      -- 		t("autosnippet"),
-      -- 	}),
-      -- }, {
-      -- 	type = "autosnippets",
-      -- 	key = "all_auto",
-      -- })
-
-      -- Beside defining your own snippets you can also load snippets from "vscode-like" packages
-      -- that expose snippets in json files, for example <https://github.com/rafamadriz/friendly-snippets>.
-
-      require("luasnip.loaders.from_vscode").load({ include = { "python", "html", "typescript", "javascript" } }) -- Load only python snippets
-
-
-      -- The directories will have to be structured like eg. <https://github.com/rafamadriz/friendly-snippets> (include
-      -- a similar `package.json`)
-      -- require("luasnip.loaders.from_vscode").load({ paths = { "./my-snippets" } }) -- Load snippets from my-snippets folder
-      --
-      -- -- You can also use lazy loading so snippets are loaded on-demand, not all at once (may interfere with lazy-loading luasnip itself).
-      -- require("luasnip.loaders.from_vscode").lazy_load() -- You can pass { paths = "./my-snippets/"} as well
-      --
-      -- -- You can also use snippets in snipmate format, for example <https://github.com/honza/vim-snippets>.
-      -- -- The usage is similar to vscode.
-      --
-      -- -- One peculiarity of honza/vim-snippets is that the file containing global
-      -- -- snippets is _.snippets, so we need to tell luasnip that the filetype "_"
-      -- -- contains global snippets:
       require('luasnip').filetype_extend("typescript", { "html" })
       require('luasnip').filetype_extend("typescriptreact", { "html" })
-
-      --
-      -- require("luasnip.loaders.from_snipmate").load({ include = { "c" } }) -- Load only snippets for c.
-      --
-      -- -- Load snippets from my-snippets folder
-      -- -- The "." refers to the directory where of your `$MYVIMRC` (you can print it
-      -- -- out with `:lua print(vim.env.MYVIMRC)`.
-      -- -- NOTE: It's not always set! It isn't set for example if you call neovim with
-      -- -- the `-u` argument like this: `nvim -u yeet.txt`.
-      -- require("luasnip.loaders.from_snipmate").load({ path = { "./my-snippets" } })
-      -- -- If path is not specified, luasnip will look for the `snippets` directory in rtp (for custom-snippet probably
-      -- -- `~/.config/nvim/snippets`).
-      --
-      -- require("luasnip.loaders.from_snipmate").lazy_load() -- Lazy loading
-      --
-      -- -- see DOC.md/LUA SNIPPETS LOADER for some details.
-      -- require("luasnip.loaders.from_lua").load({ include = { "c" } })
-      -- require("luasnip.loaders.from_lua").lazy_load({ include = { "all", "cpp" } })
-      -- TODO
     end
   },
 }
