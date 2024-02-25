@@ -264,21 +264,26 @@ tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 #define int long long
 #define pi pair<int, int>
-#define vt vector
-#define vi vt<int>
-#define vs vt<string>
-#define vb vt<bool>
-#define vp vt<pi>
+#define v vector
+#define vi v<int>
+#define vs v<string>
+#define vb v<bool>
+#define vp v<pi>
 #define pb push_back
 #define rep(i, n) for(int i = 0; i < n; i++)
 #define all(x) x.begin(), x.end()
 #define endl "\n"
+#define fi first
+#define se second
 
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
 template<class T> using pq = priority_queue<T>;
 template<class T> using pqg = priority_queue<T, vector<T>, greater<T>>;
+
+const int dx[]{1, 0, -1, 0};
+const int dy[]{0, -1, 0, 1};
 
 void setIO(string name = "") {
 	cin.tie(0)->sync_with_stdio(0);
@@ -288,9 +293,15 @@ void setIO(string name = "") {
   }
 }
 
+void solve() {
+  @!
+}
+
 signed main() {
   setIO("");
-  @!
+  int t = 1;
+  cin >> t;
+  while(t--) solve();
 }
           ]],
             {
@@ -308,8 +319,7 @@ signed main() {
 template<int MOD> struct mint {
   int v; 
   explicit operator int() const { return v; } 
-  mint():v(0) {}
-  mint(int _v):v(_v%MOD) { v += (v < 0) * MOD; }
+  mint(int _v = 0) : v((_v % MOD + MOD) % MOD) {}
   mint& operator+=(mint o) { if ((v += o.v) >= MOD) v -= MOD; return *this; }
   mint& operator-=(mint o) { if ((v -= o.v) < 0) v += MOD; return *this; }
   mint& operator*=(mint o) { v = v * o.v % MOD; return *this; }
@@ -321,12 +331,11 @@ template<int MOD> struct mint {
   friend mint operator+(mint a, mint b) { return a += b; }
   friend mint operator-(mint a, mint b) { return a -= b; }
   friend mint operator*(mint a, mint b) { return a *= b; }
-  friend ostream& operator<<(ostream &out, mint &a) { out << a.v; return out; }
-  friend istream& operator>>(istream &in, mint &a) { in >> a.v; return in; }
+  friend ostream& operator<<(ostream &out, mint &a) { return out << a.v; }
+  friend istream& operator>>(istream &in, mint &a) { in >> a.v; a.v = (a.v % MOD + MOD) % MOD; return in; }
 };
 const int mod = 1e9 + 7;
 using Z = mint<mod>;
-using vmi = vector<Z>;
 @`
           ]],
             {
@@ -337,6 +346,7 @@ using vmi = vector<Z>;
             }
           )
         ),
+
 
       }, {
           key = "cpp"
