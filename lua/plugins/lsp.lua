@@ -52,7 +52,7 @@ return {
         require("illuminate").on_attach(client)
       end
 
-      for _, server in pairs(require("utils").servers) do
+      for _, server in pairs(require("langs").servers) do
         Opts = {
           on_attach = on_attach,
         }
@@ -85,7 +85,7 @@ return {
     config = function (_, opts)
       require("mason").setup(opts)
       require("mason-lspconfig").setup {
-        ensure_installed = require("utils").servers,
+        ensure_installed = require("langs").servers,
         automatic_installation = true,
       }
     end
@@ -94,7 +94,7 @@ return {
     'jay-babu/mason-null-ls.nvim',
     commit = "ae0c5fa57468ac65617f1bf821ba0c3a1e251f0c",
     opts = {
-      ensure_installed = { "stylua", "markdownlint", "cpplint", "clang_format" }
+      ensure_installed = { "stylua", "cpplint", "clang_format" }
     }
   },
   {
@@ -113,9 +113,9 @@ return {
       return {
         sources = {
             nls.builtins.formatting.stylua,
-            nls.builtins.formatting.markdownlint,
+            -- nls.builtins.formatting.markdownlint,
             -- nls.builtins.formatting.clang_format,
-            nls.builtins.diagnostics.markdownlint,
+            -- nls.builtins.diagnostics.markdownlint,
             -- nls.builtins.diagnostics.cpplint,
         },
       }
