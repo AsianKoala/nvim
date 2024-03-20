@@ -238,67 +238,25 @@ return {
           "cp",
           fmt(
             [[
-// ⣿⡟⠙⠛⠋⠩⠭⣉⡛⢛⠫⠭⠄⠒⠄⠄⠄⠈⠉⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-// ⣿⡇⠄⠄⠄⠄⣠⠖⠋⣀⡤⠄⠒⠄⠄⠄⠄⠄⠄⠄⠄⠄⣈⡭⠭⠄⠄⠄⠉⠙
-// ⣿⡇⠄⠄⢀⣞⣡⠴⠚⠁⠄⠄⢀⠠⠄⠄⠄⠄⠄⠄⠄⠉⠄⠄⠄⠄⠄⠄⠄⠄
-// ⣿⡇⠄⡴⠁⡜⣵⢗⢀⠄⢠⡔⠁⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄
-// ⣿⡇⡜⠄⡜⠄⠄⠄⠉⣠⠋⠠⠄⢀⡄⠄⠄⣠⣆⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢸
-// ⣿⠸⠄⡼⠄⠄⠄⠄⢰⠁⠄⠄⠄⠈⣀⣠⣬⣭⣛⠄⠁⠄⡄⠄⠄⠄⠄⠄⢀⣿
-// ⣏⠄⢀⠁⠄⠄⠄⠄⠇⢀⣠⣴⣶⣿⣿⣿⣿⣿⣿⡇⠄⠄⡇⠄⠄⠄⠄⢀⣾⣿
-// ⣿⣸⠈⠄⠄⠰⠾⠴⢾⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⢁⣾⢀⠁⠄⠄⠄⢠⢸⣿⣿
-// ⣿⣿⣆⠄⠆⠄⣦⣶⣦⣌⣿⣿⣿⣿⣷⣋⣀⣈⠙⠛⡛⠌⠄⠄⠄⠄⢸⢸⣿⣿
-// ⣿⣿⣿⠄⠄⠄⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠈⠄⠄⠄⠄⠄⠈⢸⣿⣿
-// ⣿⣿⣿⠄⠄⠄⠘⣿⣿⣿⡆⢀⣈⣉⢉⣿⣿⣯⣄⡄⠄⠄⠄⠄⠄⠄⠄⠈⣿⣿
-// ⣿⣿⡟⡜⠄⠄⠄⠄⠙⠿⣿⣧⣽⣍⣾⣿⠿⠛⠁⠄⠄⠄⠄⠄⠄⠄⠄⠃⢿⣿
-// ⣿⡿⠰⠄⠄⠄⠄⠄⠄⠄⠄⠈⠉⠩⠔⠒⠉⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠐⠘⣿
-// ⣿⠃⠃⠄⠄⠄⠄⠄⠄⣀⢀⠄⠄⡀⡀⢀⣤⣴⣤⣤⣀⣀⠄⠄⠄⠄⠄⠄⠁⢹
-
 #include <bits/stdc++.h>
 using namespace std;
 
-#include <ext/pb_ds/assoc_container.hpp>
-using namespace __gnu_pbds;
-
-template<typename T> using ordered_set = 
-tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
-
 #define int long long
 #define pi pair<int, int>
-#define v vector
-#define vi v<int>
-#define vs v<string>
-#define vb v<bool>
-#define vp v<pi>
-#define pb push_back
 #define rep(i, n) for(int i = 0; i < n; i++)
 #define all(x) x.begin(), x.end()
 #define endl "\n"
-#define fi first
-#define se second
 
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
-
-template<class T> using pq = priority_queue<T>;
-template<class T> using pqg = priority_queue<T, vector<T>, greater<T>>;
-
-const int dx[]{1, 0, -1, 0};
-const int dy[]{0, -1, 0, 1};
-
-void setIO(string name = "") {
-	cin.tie(0)->sync_with_stdio(0);
-	if (name.size()) {
-		freopen((name + ".in").c_str(), "r", stdin);
-		freopen((name + ".out").c_str(), "w", stdout);
-  }
-}
 
 void solve() {
   @!
 }
 
 signed main() {
-  setIO("");
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
   int t = 1;
   cin >> t;
   while(t--) solve();
@@ -343,6 +301,103 @@ using Z = mint<mod>;
             },
             {
               delimiters = "@`"
+            }
+          )
+        ),
+
+        s(
+          "cp2",
+          fmt(
+            [[
+// ⣿⡟⠙⠛⠋⠩⠭⣉⡛⢛⠫⠭⠄⠒⠄⠄⠄⠈⠉⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+// ⣿⡇⠄⠄⠄⠄⣠⠖⠋⣀⡤⠄⠒⠄⠄⠄⠄⠄⠄⠄⠄⠄⣈⡭⠭⠄⠄⠄⠉⠙
+// ⣿⡇⠄⠄⢀⣞⣡⠴⠚⠁⠄⠄⢀⠠⠄⠄⠄⠄⠄⠄⠄⠉⠄⠄⠄⠄⠄⠄⠄⠄
+// ⣿⡇⠄⡴⠁⡜⣵⢗⢀⠄⢠⡔⠁⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄
+// ⣿⡇⡜⠄⡜⠄⠄⠄⠉⣠⠋⠠⠄⢀⡄⠄⠄⣠⣆⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢸
+// ⣿⠸⠄⡼⠄⠄⠄⠄⢰⠁⠄⠄⠄⠈⣀⣠⣬⣭⣛⠄⠁⠄⡄⠄⠄⠄⠄⠄⢀⣿
+// ⣏⠄⢀⠁⠄⠄⠄⠄⠇⢀⣠⣴⣶⣿⣿⣿⣿⣿⣿⡇⠄⠄⡇⠄⠄⠄⠄⢀⣾⣿
+// ⣿⣸⠈⠄⠄⠰⠾⠴⢾⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⢁⣾⢀⠁⠄⠄⠄⢠⢸⣿⣿
+// ⣿⣿⣆⠄⠆⠄⣦⣶⣦⣌⣿⣿⣿⣿⣷⣋⣀⣈⠙⠛⡛⠌⠄⠄⠄⠄⢸⢸⣿⣿
+// ⣿⣿⣿⠄⠄⠄⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠈⠄⠄⠄⠄⠄⠈⢸⣿⣿
+// ⣿⣿⣿⠄⠄⠄⠘⣿⣿⣿⡆⢀⣈⣉⢉⣿⣿⣯⣄⡄⠄⠄⠄⠄⠄⠄⠄⠈⣿⣿
+// ⣿⣿⡟⡜⠄⠄⠄⠄⠙⠿⣿⣧⣽⣍⣾⣿⠿⠛⠁⠄⠄⠄⠄⠄⠄⠄⠄⠃⢿⣿
+// ⣿⡿⠰⠄⠄⠄⠄⠄⠄⠄⠄⠈⠉⠩⠔⠒⠉⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠐⠘⣿
+// ⣿⠃⠃⠄⠄⠄⠄⠄⠄⣀⢀⠄⠄⡀⡀⢀⣤⣴⣤⣤⣀⣀⠄⠄⠄⠄⠄⠄⠁⢹
+
+#include <bits/stdc++.h>
+using namespace std;
+
+#include <ext/pb_ds/assoc_container.hpp>
+using namespace __gnu_pbds;
+
+template<typename T> using ordered_set = 
+tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+
+#define int long long
+#define pi pair<int, int>
+template<class T> using v = vector<T>;
+#define vi v<int>
+#define vs v<string>
+#define vb v<bool>
+#define vp v<pi>
+#define pb push_back
+#define rep(i, n) for(int i = 0; i < n; i++)
+#define all(x) x.begin(), x.end()
+#define endl "\n"
+#define fi first
+#define se second
+
+template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
+template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
+
+template<class T> using pq = priority_queue<T>;
+template<class T> using pqg = priority_queue<T, vector<T>, greater<T>>;
+
+const int dx[]{1, 0, -1, 0};
+const int dy[]{0, -1, 0, 1};
+const int inf = 1e18;
+
+void setIO(string name = "") {
+	cin.tie(0)->sync_with_stdio(0);
+	if (name.size()) {
+		freopen((name + ".in").c_str(), "r", stdin);
+		freopen((name + ".out").c_str(), "w", stdout);
+  }
+}
+
+void solve() {
+  @!
+}
+
+signed main() {
+  setIO("");
+  int t = 1;
+  cin >> t;
+  while(t--) solve();
+}
+          ]],
+            {
+              i(1)
+            },
+            {
+              delimiters = "@!"
+            }
+          )
+        ),
+
+        s(
+          "usaco",
+          fmt(
+            [[
+string name = "";
+freopen((name + ".in").c_str(), "r", stdin);
+freopen((name + ".out").c_str(), "w", stdout);@!
+          ]],
+            {
+              i(1)
+            },
+            {
+              delimiters = "@!"
             }
           )
         ),
