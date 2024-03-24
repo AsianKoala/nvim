@@ -243,6 +243,7 @@ using namespace std;
 
 #define int long long
 #define pi pair<int, int>
+#define vi vector<int>
 #define rep(i, n) for(int i = 0; i < n; i++)
 #define all(x) x.begin(), x.end()
 #define endl "\n"
@@ -281,6 +282,7 @@ template<int MOD> struct mint {
   mint& operator+=(mint o) { if ((v += o.v) >= MOD) v -= MOD; return *this; }
   mint& operator-=(mint o) { if ((v -= o.v) < 0) v += MOD; return *this; }
   mint& operator*=(mint o) { v = v * o.v % MOD; return *this; }
+  mint& operator/=(mint o) { v = v * inv(o).v % MOD; return *this; }
   mint& operator++() { return *this += 1; }
   mint& operator--() { return *this -= 1; }
   mint operator-() const { return mint(-v); }
@@ -289,11 +291,13 @@ template<int MOD> struct mint {
   friend mint operator+(mint a, mint b) { return a += b; }
   friend mint operator-(mint a, mint b) { return a -= b; }
   friend mint operator*(mint a, mint b) { return a *= b; }
+  friend mint operator/(mint a, mint b) { return a / b; }
   friend ostream& operator<<(ostream &out, mint &a) { return out << a.v; }
   friend istream& operator>>(istream &in, mint &a) { in >> a.v; a.v = (a.v % MOD + MOD) % MOD; return in; }
 };
 const int mod = 1e9 + 7;
 using Z = mint<mod>;
+using vz = vector<Z>;
 @`
           ]],
             {
