@@ -241,15 +241,20 @@ return {
 #include <bits/stdc++.h>
 using namespace std;
 
+template<class T> using v = vector<T>;
 #define int long long
+#define vi v<int>
 #define pi pair<int, int>
-#define vi vector<int>
 #define rep(i, n) for(int i = 0; i < n; i++)
 #define all(x) x.begin(), x.end()
 #define endl "\n"
-
+#define fi first
+#define se second
+#define pb push_back
 template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
+template<class T> using pq = priority_queue<T>;
+template<class T> using pqg = priority_queue<T, vector<T>, greater<T>>;
 
 void solve() {
   @!
@@ -297,7 +302,6 @@ template<int MOD> struct mint {
 };
 const int mod = 1e9 + 7;
 using Z = mint<mod>;
-using vz = vector<Z>;
 @`
           ]],
             {
@@ -396,6 +400,22 @@ signed main() {
 string name = "";
 freopen((name + ".in").c_str(), "r", stdin);
 freopen((name + ".out").c_str(), "w", stdout);@!
+          ]],
+            {
+              i(1)
+            },
+            {
+              delimiters = "@!"
+            }
+          )
+        ),
+
+        s(
+          "cheese",
+          fmt(
+            [[
+#pragma GCC optimize("O3,unroll-loops")
+#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")@!
           ]],
             {
               i(1)
