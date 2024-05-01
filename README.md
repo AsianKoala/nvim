@@ -5,13 +5,12 @@
 
 ## Requirements
 - python3
-- ~~`pywal` for my colorscheme~~ Deprecated, currently use a different colorscheme
 - `ripgrep` for `Telescope`
 - `pandoc, latex, zathura` for `VimTeX`
 - some [nerd font](https://github.com/ryanoasis/nerd-fonts) for icons
 
 ## Install
-**Guaranteed** to work on neovim v0.9.1  
+**Guaranteed** to work on neovim v0.9.5  
 
 Clone this under your ~/.config/nvim directory
 

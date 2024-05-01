@@ -4,6 +4,7 @@ return {
   {
     "ahmedkhalf/project.nvim",
     commit = "685bc8e3890d2feb07ccf919522c97f7d33b94e4",
+    event = "VeryLazy",
     opts = {
       -- detection_methods = { "lsp", "pattern" }, -- NOTE: lsp detection will get annoying with multiple langs in one project
       detection_methods = { "pattern" },
@@ -214,6 +215,7 @@ return {
   },
   {
     'rmagatti/auto-session',
+    event = "VeryLazy",
     keys = {
       { "<leader>ss", "<cmd>SessionSave<CR>", desc = "Save Session"},
       { "<leader>sr", "<cmd>SessionRestore<CR>", desc = "Restore Session"},
@@ -230,6 +232,7 @@ return {
   },
   {
     'norcalli/nvim-colorizer.lua',
+    event = "VeryLazy",
     opts = {
       filetypes = {
         'html',

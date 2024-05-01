@@ -454,6 +454,7 @@ return {
 
   {
     "lervag/vimtex",
+    event = "VeryLazy",
     commit = "a7b1654ef59bfd8c15ab3e0eb27451319174a131",
     ft = {"tex", "cls"},
     init = function()
@@ -468,6 +469,6 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
-    -- event = "VeryLazy",
+    event = "VeryLazy",
   }
 }

@@ -92,6 +92,7 @@ return {
   },
   {
     'jay-babu/mason-null-ls.nvim',
+    event = "VeryLazy",
     commit = "ae0c5fa57468ac65617f1bf821ba0c3a1e251f0c",
     opts = {
       ensure_installed = { "stylua", "cpplint", "clang_format" }
@@ -135,6 +136,7 @@ return {
   -- typescript drop in replacement
   {
     "pmizio/typescript-tools.nvim",
+    event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {
       settings = {
