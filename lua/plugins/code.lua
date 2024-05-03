@@ -306,7 +306,7 @@ return {
 
   {
     "xeluxee/competitest.nvim",
-    commit = "01f29ad4c72420032e2ef4f856682c489b2fecf0",
+    commit = "c3cb0e2b0916a879c4d3dcb5737e6c046dd0afc5",
     ft = "cpp",
     dependencies = {
       {
@@ -429,22 +429,27 @@ return {
     keys = {
       {
         "<leader>ca",
-        "<cmd>CompetiTestAdd<CR>",
+        "<cmd>CompetiTest add_testcase<CR>",
         desc = "CompetiTest Add"
       },
       {
         "<leader>cr",
-        "<cmd>CompetiTestRun<CR>",
+        "<cmd>CompetiTest run<CR>",
         desc = "CompetiTest Run"
       },
       {
         "<leader>ce",
-        "<cmd>CompetiTestEdit<CR>",
+        "<cmd>CompetiTest edit_testcase<CR>",
         desc = "CompetiTest Edit"
       },
       {
+        "<leader>cd",
+        "<cmd>CompetiTest delete_testcase<CR>",
+        desc = "CompetiTest Receive Testcases"
+      },
+      {
         "<leader>ct",
-        "<cmd>CompetiTestReceive testcases<CR>",
+        "<cmd>CompetiTest receive testcases<CR>",
         desc = "CompetiTest Receive Testcases"
       }
     }
