@@ -5,12 +5,10 @@ return {
   -- auto pairs
   {
     "windwp/nvim-autopairs",
-    commit = "0e065d423f9cf649e1d92443c939a4b5073b6768",
     event = "VeryLazy",
     dependencies = {
       {
         "hrsh7th/nvim-cmp",
-        commit = "cfafe0a1ca8933f7b7968a287d39904156f2c57d",
         event = {
           "InsertEnter",
           "CmdlineEnter",
@@ -29,40 +27,31 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    commit = "cfafe0a1ca8933f7b7968a287d39904156f2c57d",
     dependencies = {
       {
         "hrsh7th/cmp-nvim-lsp",
-        commit = "0e6b2ed705ddcff9738ec4ea838141654f12eeef",
       },
       {
         "hrsh7th/cmp-buffer",
-        commit = "3022dbc9166796b644a841a02de8dd1cc1d311fa",
       },
       {
         "hrsh7th/cmp-path",
-        commit = "91ff86cd9c29299a64f968ebb45846c485725f23",
       },
       {
         "hrsh7th/cmp-cmdline",
-        commit = "23c51b2a3c00f6abc4e922dbd7c3b9aca6992063",
       },
       {
         "saadparwaiz1/cmp_luasnip",
-        commit = "18095520391186d634a0045dacaa346291096566",
       },
       {
         "L3MON4D3/LuaSnip",
-        commit = "9bff06b570df29434a88f9c6a9cea3b21ca17208",
         event = "InsertEnter",
         dependencies = {
           "rafamadriz/friendly-snippets",
-          commit = "a6f7a1609addb4e57daa6bedc300f77f8d225ab7",
         },
       },
       {
         "hrsh7th/cmp-nvim-lua",
-        commit = "f3491638d123cfd2c8048aefaf66d246ff250ca6",
       },
     },
     init = function ()
@@ -239,13 +228,11 @@ return {
   { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
   {
     "numToStr/Comment.nvim",
-    commit = "eab2c83a0207369900e92783f56990808082eac2",
     event = "VeryLazy",
     dependencies = {
       {
         "JoosepAlviste/nvim-ts-context-commentstring",
         event = "VeryLazy",
-        commit = "a0f89563ba36b3bacd62cf967b46beb4c2c29e52",
       },
     },
   },
@@ -253,7 +240,6 @@ return {
 
   {
     "RRethy/vim-illuminate",
-    commit = "d6ca7f77eeaf61b3e6ce9f0e5a978d606df44298",
     event = "VeryLazy",
     init = function ()
       vim.g.Illuminate_ftblacklist = {'alpha', 'NvimTree'}
@@ -266,39 +252,38 @@ return {
 
   {
     "lewis6991/gitsigns.nvim",
-    commit = "ec4742a7eebf68bec663041d359b95637242b5c3",
     event = "VeryLazy",
-    opts = {
-      signs = {
-        add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-        change = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-        delete = { hl = "GitSignsDelete", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-        topdelete = { hl = "GitSignsDelete", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-        changedelete = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-      },
-      signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-      watch_gitdir = {
-        interval = 1000,
-        follow_files = true,
-      },
-      attach_to_untracked = true,
-      current_line_blame_opts = {
-        virt_text = true,
-        virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
-        delay = 1000,
-      },
-      sign_priority = 6,
-      update_debounce = 100,
-      status_formatter = nil, -- Use default
-      preview_config = {
-        -- Options passed to nvim_open_win
-        border = "single",
-        style = "minimal",
-        relative = "cursor",
-        row = 0,
-        col = 1,
-      },
-    }
+    -- opts = {
+    --   signs = {
+    --     add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+    --     change = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+    --     delete = { hl = "GitSignsDelete", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
+    --     topdelete = { hl = "GitSignsDelete", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
+    --     changedelete = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+    --   },
+    --   signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+    --   watch_gitdir = {
+    --     interval = 1000,
+    --     follow_files = true,
+    --   },
+    --   attach_to_untracked = true,
+    --   current_line_blame_opts = {
+    --     virt_text = true,
+    --     virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+    --     delay = 1000,
+    --   },
+    --   sign_priority = 6,
+    --   update_debounce = 100,
+    --   status_formatter = nil, -- Use default
+    --   preview_config = {
+    --     -- Options passed to nvim_open_win
+    --     border = "single",
+    --     style = "minimal",
+    --     relative = "cursor",
+    --     row = 0,
+    --     col = 1,
+    --   },
+    -- }
   },
 
 
@@ -460,7 +445,6 @@ return {
   {
     "lervag/vimtex",
     event = "VeryLazy",
-    commit = "a7b1654ef59bfd8c15ab3e0eb27451319174a131",
     ft = {"tex", "cls"},
     init = function()
       vim.g.vimtex_view_general_viewer = 'zathura'
@@ -472,8 +456,4 @@ return {
       vim.g.vimtex_view_general_options = [[--unique file:@pdf\#src:@line@tex]]
     end
   },
-  {
-    "windwp/nvim-ts-autotag",
-    event = "VeryLazy",
-  }
 }

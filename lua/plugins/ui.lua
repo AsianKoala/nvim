@@ -5,7 +5,6 @@ return {
   {
     "goolord/alpha-nvim",
     event = "VimEnter",
-    commit = "dafa11a6218c2296df044e00f88d9187222ba6b0",
 
     config = function ()
       local alpha = require("alpha")
@@ -70,12 +69,10 @@ return {
 
   {
     "akinsho/bufferline.nvim",
-    commit = "c7492a76ce8218e3335f027af44930576b561013",
     event = { "UIEnter" },
     dependencies = {
       {
         "famiu/bufdelete.nvim",
-        commit = "8933abc09df6c381d47dc271b1ee5d266541448e",
       },
     },
     opts = {
@@ -166,7 +163,6 @@ return {
 
   {
     "nvim-lualine/lualine.nvim",
-    commit = "0050b308552e45f7128f399886c86afefc3eb988",
     event = { "VimEnter", "InsertEnter", "BufReadPre", "BufAdd", "BufNew", "BufReadPost" },
     opts = function ()
       local hide_in_width = function()
@@ -231,10 +227,9 @@ return {
 
   {
     "kyazdani42/nvim-tree.lua",
-    commit = "59e65d88db177ad1e6a8cffaafd4738420ad20b6",
     event = "VeryLazy",
     opts = function ()
-      local tree_cb = require("nvim-tree.config").nvim_tree_callback
+      local api = require("nvim-tree.api")
 
       return {
         update_focused_file = {
@@ -284,13 +279,12 @@ return {
         view = {
           width = 30,
           side = "left",
-          mappings = {
-            list = {
-              { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" },
-              { key = "h",                  cb = tree_cb "close_node" },
-              { key = "v",                  cb = tree_cb "vsplit" },
-            },
-          },
+          -- mappings = {
+          --   list = {
+          --     { key = { "l", "<CR>", "o" }, cb = api.node.open.edit() },
+          --     { key = "v",                  cb = api.node.open.vertical() },
+          --   },
+          -- },
         },
         actions = {
           open_file = {
@@ -306,7 +300,6 @@ return {
 
   {
     "akinsho/toggleterm.nvim",
-    commit = "19aad0f41f47affbba1274f05e3c067e6d718e1e",
     event = "VeryLazy",
     opts = {
       size = 10,
@@ -347,7 +340,6 @@ return {
   {
     "nvim-tree/nvim-web-devicons",
     event = "VeryLazy",
-    commit = "0568104bf8d0c3ab16395433fcc5c1638efc25d4",
     opts = {
       override = {
         zsh = {
@@ -366,7 +358,6 @@ return {
 
   {
     "folke/which-key.nvim",
-    commit = "5224c261825263f46f6771f1b644cae33cd06995",
     event = "VeryLazy",
 
     config = function ()
@@ -379,13 +370,11 @@ return {
 
   {
     "MunifTanjim/nui.nvim",
-    commit = "d146966a423e60699b084eeb28489fe3b6427599",
     event = "VeryLazy"
   },
 
   {
     'stevearc/dressing.nvim',
-    commit = "e6eff7a5a950a853c3903d906dbcea03f778db5f",
     event = "VeryLazy",
   },
 }

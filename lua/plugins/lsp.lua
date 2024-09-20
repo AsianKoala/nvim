@@ -1,12 +1,10 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    commit = "649137cbc53a044bffde36294ce3160cb18f32c7",
     lazy = true,
     dependencies = {
       {
         "hrsh7th/cmp-nvim-lsp",
-        commit = "0e6b2ed705ddcff9738ec4ea838141654f12eeef",
       },
     },
 
@@ -40,13 +38,6 @@ return {
           client.server_capabilities.documentFormattingProvider = false
         end
 
-        if client.name == "tailwindcss" then
-          	if client.server_capabilities.colorProvider then
-              require("utils/documentcolors").buf_attach(bufnr)
-              require("colorizer").attach_to_buffer(bufnr, { mode = "background", css = true, names = false, tailwind = false })
-            end
-        end
-
 
         lsp_keymaps(bufnr)
         require("illuminate").on_attach(client)
@@ -68,15 +59,14 @@ return {
       end
     end
   },
+
   {
     "williamboman/mason.nvim",
-    commit = "4546dec8b56bc56bc1d81e717e4a935bc7cd6477",
     cmd = "Mason",
     event = "BufReadPre",
     dependencies = {
       {
         "williamboman/mason-lspconfig.nvim",
-        commit = "93e58e100f37ef4fb0f897deeed20599dae9d128",
         lazy = true,
       },
     },
@@ -90,22 +80,21 @@ return {
       }
     end
   },
+
   {
     'jay-babu/mason-null-ls.nvim',
     event = "VeryLazy",
-    commit = "ae0c5fa57468ac65617f1bf821ba0c3a1e251f0c",
     opts = {
       ensure_installed = { "stylua", "cpplint", "clang_format" }
     }
   },
+
   {
     "jose-elias-alvarez/null-ls.nvim",
     event = "BufReadPre",
-    commit = "60b4a7167c79c7d04d1ff48b55f2235bf58158a7",
     dependencies = {
       {
         "nvim-lua/plenary.nvim",
-        commit = "9a0d3bf7b832818c042aaf30f692b081ddd58bd9",
         lazy = true,
       },
     },
@@ -130,17 +119,4 @@ return {
     event = 'LspAttach',
   },
 
-  -- typescript drop in replacement
-  {
-    "pmizio/typescript-tools.nvim",
-    event = "VeryLazy",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {
-      settings = {
-        tsserver_plugins = {
-          "@styled/typescript-styled-plugin",
-        },
-      }
-    },
-  }
 }

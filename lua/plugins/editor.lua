@@ -3,7 +3,6 @@ return {
 
   {
     "ahmedkhalf/project.nvim",
-    commit = "685bc8e3890d2feb07ccf919522c97f7d33b94e4",
     event = "VeryLazy",
     opts = {
       -- detection_methods = { "lsp", "pattern" }, -- NOTE: lsp detection will get annoying with multiple langs in one project
@@ -22,13 +21,11 @@ return {
 
   {
     "nvim-telescope/telescope.nvim",
-    commit = "7011eaae0ac1afe036e30c95cf80200b8dc3f21a",
     event = "VeryLazy",
     cmd = { "Telescope" },
     dependencies = {
       {
         "ahmedkhalf/project.nvim",
-        commit = "685bc8e3890d2feb07ccf919522c97f7d33b94e4",
       },
       {
         "nvim-lua/plenary.nvim"
@@ -115,7 +112,6 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    commit = "dcf46d07cc07c5f801bb8488502b2e7953e6e7c8",
     version = false, -- last release is way too old and doesn't work on Windows
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
@@ -143,21 +139,11 @@ return {
 
   {
     "lukas-reineke/indent-blankline.nvim",
-    commit = "8299fe7703dfff4b1752aeed271c3b95281a952d",
     event = "BufReadPre",
-    opts = {
-      char = "▏",
-      show_trailing_blankline_indent = false,
-      show_first_indent_level = true,
-      use_treesitter = true,
-      show_current_context = true,
-      buftype_exclude = { "terminal", "nofile" },
-      filetype_exclude = {
-        "help",
-        "packer",
-        "NvimTree",
-      },
-    }
+    main = "ibl",
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {},
   },
 
   -- Measure startup time
@@ -172,6 +158,7 @@ return {
       vim.g.startuptime_tries = 10
     end,
   },
+
   {
     "folke/flash.nvim",
     event = "VeryLazy",
@@ -213,55 +200,4 @@ return {
       },
     },
   },
-  {
-    'rmagatti/auto-session',
-    event = "VeryLazy",
-    keys = {
-      { "<leader>ss", "<cmd>SessionSave<CR>", desc = "Save Session"},
-      { "<leader>sr", "<cmd>SessionRestore<CR>", desc = "Restore Session"},
-    },
-    opts = function ()
-    return {
-      auto_session_suppress_dirs = {"~/", "/", "~/downloads"},
-      auto_restore_enabled = false,
-      post_restore_cmds = { "NvimTreeOpen" },
-      pre_save_cmds = { "NvimTreeClose" },
-      post_save_cmds = { "NvimTreeOpen" }
-    }
-    end
-  },
-  {
-    'norcalli/nvim-colorizer.lua',
-    event = "VeryLazy",
-    opts = {
-      filetypes = {
-        'html',
-        'css',
-        'javascript',
-        'typescript',
-        'typescriptreact',
-        'javascriptreact',
-        'lua'
-      },
-      user_default_options = {
-        mode = "background",
-        tailwind = false, -- Enable tailwind colors
-      }
-    }
-  },
-  {
-    "roobert/tailwindcss-colorizer-cmp.nvim",
-    -- optionally, override the default options:
-    event = "VeryLazy",
-    config = function()
-      require("tailwindcss-colorizer-cmp").setup({
-        color_square_width = 2,
-      })
-    end,
-  },
-  {
-    "https://github.com/Aasim-A/scrollEOF.nvim",
-    event = { 'CursorMoved', 'WinScrolled' },
-    opts = {},
-  }
 }
