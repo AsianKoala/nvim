@@ -1,5 +1,5 @@
 # nvim
-![image](https://files.catbox.moe/c0nsbi.png)
+![image](https://files.catbox.moe/qfdxug.png)
 
 ![image](https://files.catbox.moe/c0nsbi.png)
 
