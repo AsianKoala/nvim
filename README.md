@@ -1,16 +1,17 @@
 # nvim
-![image](https://i.imgur.com/N2yZThs.jpg)
+![image](https://files.catbox.moe/c0nsbi.png)
 
-![image](https://i.imgur.com/HDT9oiZ.png)
+![image](https://files.catbox.moe/c0nsbi.png)
 
 ## Requirements
 - python3
 - `ripgrep` for `Telescope`
 - `pandoc, latex, zathura` for `VimTeX`
+- probably some other stuff
 - some [nerd font](https://github.com/ryanoasis/nerd-fonts) for icons
 
 ## Install
-**Guaranteed** to work on neovim v0.9.5  
+**Guaranteed** to work on neovim v0.10.1
 
 Clone this under your ~/.config/nvim directory
 
