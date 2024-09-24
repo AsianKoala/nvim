@@ -6,7 +6,7 @@ M.servers = {
   "bashls",
   "jsonls",
   "clangd",
-  "rust_analyzer"
+  -- "rust_analyzer"
 }
 
 return M
