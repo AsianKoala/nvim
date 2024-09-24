@@ -1,4 +1,0 @@
-return {
-  filetypes = { "html", "xhtml" }
-}
-

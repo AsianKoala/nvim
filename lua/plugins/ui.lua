@@ -42,7 +42,7 @@ return {
         dashboard.button("p", ">find project", ":lua require('telescope').extensions.projects.projects()<CR>"),
         dashboard.button("r", ">recent files", ":Telescope oldfiles <CR>"),
         dashboard.button("s", ">scratchpad", ":e ~/documents/scratchpad <CR>"),
-        dashboard.button("c", ">config", ":e ~/.config/nvim/init.lua <CR>"),
+        dashboard.button("c", ">config", ":e ~/dotfiles/nvim/init.lua <CR>"),
         dashboard.button("g", ">gitgud", ":e ~/documents/gitgud <CR>"),
         dashboard.button("q", ">quit", ":qa<CR>"),
       }
