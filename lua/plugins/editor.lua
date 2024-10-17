@@ -124,8 +124,7 @@ return {
     opts = {
       highlight = { enable = true },
       indent = { enable = true },
-      -- ensure_installed = { "bash", "cpp", "dockerfile", "gitignore", "go", "html", "java", "javascript", "json", "kotlin", "python", "scss", "css", "sxhkdrc", "typescript", "lua" },
-      ensure_installed = "all",
+      ensure_installed = { "bash", "cpp", "dockerfile", "gitignore", "go", "html", "java", "javascript", "json", "kotlin", "python", "scss", "css", "sxhkdrc", "typescript", "lua", "rust" },
       autotag = {
         enable = true,
       }
