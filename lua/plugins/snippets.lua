@@ -6,8 +6,8 @@ return {
       "InsertEnter",
       "CmdlineEnter",
     },
-    opts = function ()
-      local types = require("luasnip.util.types")
+    opts = function()
+      local types = require "luasnip.util.types"
 
       return {
         history = true,
@@ -48,9 +48,8 @@ return {
         -- })
       }
     end,
-    init = function ()
-      local ls = require("luasnip")
-
+    init = function()
+      local ls = require "luasnip"
 
       local s = ls.snippet
       local sn = ls.snippet_node
@@ -68,9 +67,8 @@ return {
       local dl = require("luasnip.extras").dynamic_lambda
       local fmt = require("luasnip.extras.fmt").fmt
       local fmta = require("luasnip.extras.fmt").fmta
-      local types = require("luasnip.util.types")
-      local conds = require("luasnip.extras.expand_conditions")
-
+      local types = require "luasnip.util.types"
+      local conds = require "luasnip.extras.expand_conditions"
 
       -- 'recursive' dynamic snippet. Expands to some text followed by itself.
       local rec_ls
@@ -79,8 +77,8 @@ return {
           nil,
           c(1, {
             -- Order is important, sn(...) first would cause infinite loop of expansion.
-            t(""),
-            sn(nil, { t({ "", "\t\\item " }), i(1), d(2, rec_ls, {}) }),
+            t "",
+            sn(nil, { t { "", "\t\\item " }, i(1), d(2, rec_ls, {}) }),
           })
         )
       end
@@ -91,9 +89,9 @@ return {
         -- Using a restoreNode instead is much easier.
         -- View this only as an example on how old_state functions.
         local nodes = {
-          t({ "/**", " * " }),
+          t { "/**", " * " },
           i(1, "A short Description"),
-          t({ "", "" }),
+          t { "", "" },
         }
 
         -- These will be merged with the snippet; that way, should the snippet be updated,
@@ -107,7 +105,7 @@ return {
 
         -- At least one param.
         if string.find(args[2][1], ", ") then
-          vim.list_extend(nodes, { t({ " * ", "" }) })
+          vim.list_extend(nodes, { t { " * ", "" } })
         end
 
         local insert = 2
@@ -122,10 +120,7 @@ return {
             else
               inode = i(insert)
             end
-            vim.list_extend(
-              nodes,
-              { t({ " * @param " .. arg .. " " }), inode, t({ "", "" }) }
-            )
+            vim.list_extend(nodes, { t { " * @param " .. arg .. " " }, inode, t { "", "" } })
             param_nodes["arg" .. arg] = inode
 
             insert = insert + 1
@@ -140,10 +135,7 @@ return {
             inode = i(insert)
           end
 
-          vim.list_extend(
-            nodes,
-            { t({ " * ", " * @return " }), inode, t({ "", "" }) }
-          )
+          vim.list_extend(nodes, { t { " * ", " * @return " }, inode, t { "", "" } })
           param_nodes.ret = inode
           insert = insert + 1
         end
@@ -156,15 +148,12 @@ return {
           else
             ins = i(insert)
           end
-          vim.list_extend(
-            nodes,
-            { t({ " * ", " * @throws " .. exc .. " " }), ins, t({ "", "" }) }
-          )
+          vim.list_extend(nodes, { t { " * ", " * @throws " .. exc .. " " }, ins, t { "", "" } })
           param_nodes.ex = ins
           insert = insert + 1
         end
 
-        vim.list_extend(nodes, { t({ " */" }) })
+        vim.list_extend(nodes, { t { " */" } })
 
         local snip = sn(nil, nodes)
         -- Error on attempting overwrite.
@@ -176,59 +165,79 @@ return {
         -- rec_ls is self-referencing. That makes this snippet 'infinite' eg. have as many
         -- \item as necessary by utilizing a choiceNode.
         s("ls", {
-          t({ "\\begin{itemize}", "\t\\item " }),
+          t { "\\begin{itemize}", "\t\\item " },
           i(1),
           d(2, rec_ls, {}),
-          t({ "", "\\end{itemize}" }),
+          t { "", "\\end{itemize}" },
         }),
-        
+
         s("ff", {
-          t("\\frac{"), i(1), t("}{"), i(2), t("}"),
+          t "\\frac{",
+          i(1),
+          t "}{",
+          i(2),
+          t "}",
         }),
 
         s("beg", {
-          t("\\begin{"), i(1, "env"), t({"}", "\t\\item "}),
+          t "\\begin{",
+          i(1, "env"),
+          t { "}", "\t\\item " },
           i(2),
-          t({"", "\\end{"}), rep(1), t("}")
+          t { "", "\\end{" },
+          rep(1),
+          t "}",
         }),
 
         s("bx", {
-          t({
+          t {
             "\\begin{center}",
             "\t\\fbox{\\begin{varwidth}{\\dimexpr\\textwidth-2\\fboxsep-2\\fboxrule\\relax}",
             "\t\t\\begin{equation*}",
-            "\t\t\t"
-          }),
+            "\t\t\t",
+          },
           i(1),
-          t({
+          t {
             "",
             "\t\t\\end{equation*}",
             "\t\\end{varwidth}}",
-            "\\end{center}"
-          })
+            "\\end{center}",
+          },
         }),
 
         s("eq", {
-          t({"\\begin{equation*}", "\t"}),
+          t { "\\begin{equation*}", "\t" },
           i(1),
-          t({"", "\\end{equation*}"})
+          t { "", "\\end{equation*}" },
         }),
 
         s("mt", {
-          t("$ "), i(1), t(" $")
+          t "$ ",
+          i(1),
+          t " $",
         }),
 
         s("pd", {
-          t("\\frac{\\partial "), i(1), t("}{\\partial "), i(2), t("}")
+          t "\\frac{\\partial ",
+          i(1),
+          t "}{\\partial ",
+          i(2),
+          t "}",
         }),
 
         s("ve", {
-          t("\\langle "), i(1), t(","), i(2), t(" \\rangle")
+          t "\\langle ",
+          i(1),
+          t ",",
+          i(2),
+          t " \\rangle",
         }),
 
         s("vc", {
-          t("\\bm{\\vec{"), i(1), t("}}")
-        })
+          t "\\bm{\\vec{",
+          i(1),
+          t "}}",
+        }),
       }, {
         key = "tex",
       })
@@ -260,10 +269,10 @@ signed main() {
 }
           ]],
             {
-              i(1)
+              i(1),
             },
             {
-              delimiters = "@!"
+              delimiters = "@!",
             }
           )
         ),
@@ -272,8 +281,8 @@ signed main() {
           fmt(
             [[
 template<int MOD> struct mint {
-  int v; 
-  explicit operator int() const { return v; } 
+  int v;
+  explicit operator int() const { return v; }
   mint(int _v = 0) : v((_v % MOD + MOD) % MOD) {}
   mint& operator+=(mint o) { if ((v += o.v) >= MOD) v -= MOD; return *this; }
   mint& operator-=(mint o) { if ((v -= o.v) < 0) v += MOD; return *this; }
@@ -296,10 +305,10 @@ using Z = mint<mod>;
 @`
           ]],
             {
-              i(1)
+              i(1),
             },
             {
-              delimiters = "@`"
+              delimiters = "@`",
             }
           )
         ),
@@ -329,7 +338,7 @@ using namespace std;
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace __gnu_pbds;
 
-template<typename T> using ordered_set = 
+template<typename T> using ordered_set =
 tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 #define int long long
@@ -376,10 +385,10 @@ signed main() {
 }
           ]],
             {
-              i(1)
+              i(1),
             },
             {
-              delimiters = "@!"
+              delimiters = "@!",
             }
           )
         ),
@@ -393,10 +402,10 @@ freopen((name + ".in").c_str(), "r", stdin);
 freopen((name + ".out").c_str(), "w", stdout);@!
           ]],
             {
-              i(1)
+              i(1),
             },
             {
-              delimiters = "@!"
+              delimiters = "@!",
             }
           )
         ),
@@ -409,25 +418,21 @@ freopen((name + ".out").c_str(), "w", stdout);@!
 #pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")@!
           ]],
             {
-              i(1)
+              i(1),
             },
             {
-              delimiters = "@!"
+              delimiters = "@!",
             }
           )
         ),
-
-
       }, {
-          key = "cpp"
-      }
-    )
+        key = "cpp",
+      })
 
+      require("luasnip.loaders.from_vscode").load { include = { "python", "html", "typescript", "javascript" } }
 
-      require("luasnip.loaders.from_vscode").load({ include = { "python", "html", "typescript", "javascript" } })
-
-      require('luasnip').filetype_extend("typescript", { "html" })
-      require('luasnip').filetype_extend("typescriptreact", { "html" })
-    end
+      require("luasnip").filetype_extend("typescript", { "html" })
+      require("luasnip").filetype_extend("typescriptreact", { "html" })
+    end,
   },
 }

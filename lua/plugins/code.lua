@@ -1,5 +1,43 @@
 return {
 
+  -- Treesitter
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    version = false, -- last release is way too old and doesn't work on Windows
+    build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = {
+      {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+      },
+    },
+    cmd = { "TSUpdateSync" },
+    opts = {
+      highlight = { enable = true },
+      indent = { enable = true },
+      ensure_installed = {
+        "bash",
+        "cpp",
+        "dockerfile",
+        "gitignore",
+        "html",
+        "java",
+        "json",
+        "python",
+        "sxhkdrc",
+        "lua",
+        "rust",
+      },
+      autotag = {
+        enable = true,
+      },
+    },
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+  },
+
   -- Automatic bracket pairs
 
   -- auto pairs
@@ -22,9 +60,10 @@ return {
         lua = { "string", "source" },
         javascript = { "string", "template_string" },
         -- java = false,
-      }
+      },
     },
   },
+
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -54,14 +93,14 @@ return {
         "hrsh7th/cmp-nvim-lua",
       },
     },
-    init = function ()
-      vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+    init = function()
+      vim.opt.completeopt = { "menu", "menuone", "noselect" }
     end,
     event = "InsertEnter",
-    config = function ()
-      local cmp = require("cmp")
-      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-      local luasnip = require("luasnip")
+    config = function()
+      local cmp = require "cmp"
+      local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+      local luasnip = require "luasnip"
       require("luasnip/loaders/from_vscode").lazy_load()
 
       local check_backspace = function()
@@ -70,41 +109,41 @@ return {
       end
 
       local kind_icons = {
-        Array = ' ',
-        Boolean = ' ',
-        Class = ' ',
-        Color = ' ',
-        Constant = ' ',
-        Constructor = ' ',
-        Copilot = ' ',
-        Enum = ' ',
-        EnumMember = ' ',
-        Event = ' ',
-        Field = ' ',
-        File = ' ',
-        Folder = ' ',
-        Function = ' ',
-        Interface = ' ',
-        Key = ' ',
-        Keyword = ' ',
-        Method = ' ',
-        Module = ' ',
-        Namespace = ' ',
-        Null = ' ',
-        Number = ' ',
-        Object = ' ',
-        Operator = ' ',
-        Package = ' ',
-        Property = ' ',
-        Reference = ' ',
-        Snippet = ' ',
-        String = ' ',
-        Struct = ' ',
-        Text = ' ',
-        TypeParameter = ' ',
-        Unit = ' ',
-        Value = ' ',
-        Variable = ' ',
+        Array = " ",
+        Boolean = " ",
+        Class = " ",
+        Color = " ",
+        Constant = " ",
+        Constructor = " ",
+        Copilot = " ",
+        Enum = " ",
+        EnumMember = " ",
+        Event = " ",
+        Field = " ",
+        File = " ",
+        Folder = " ",
+        Function = " ",
+        Interface = " ",
+        Key = " ",
+        Keyword = " ",
+        Method = " ",
+        Module = " ",
+        Namespace = " ",
+        Null = " ",
+        Number = " ",
+        Object = " ",
+        Operator = " ",
+        Package = " ",
+        Property = " ",
+        Reference = " ",
+        Snippet = " ",
+        String = " ",
+        Struct = " ",
+        Text = " ",
+        TypeParameter = " ",
+        Unit = " ",
+        Value = " ",
+        Variable = " ",
       }
 
       cmp.setup {
@@ -190,42 +229,43 @@ return {
           ghost_text = true,
         },
         enabled = function()
-            -- Disable nvim-cmp in a telescope prompt
-            local buftype = vim.api.nvim_buf_get_option(0, 'buftype')
-            if buftype == 'prompt' then
-                return false
-            end
-            -- Disable completion in comments
-            local context = require('cmp.config.context')
-            -- Keep command mode completion enabled when cursor is in a comment
-            if vim.api.nvim_get_mode().mode == 'c' then
-                return true
-            else
-                return not context.in_treesitter_capture('comment') and not context.in_syntax_group('Comment')
-            end
+          -- Disable nvim-cmp in a telescope prompt
+          local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+          if buftype == "prompt" then
+            return false
+          end
+          -- Disable completion in comments
+          local context = require "cmp.config.context"
+          -- Keep command mode completion enabled when cursor is in a comment
+          if vim.api.nvim_get_mode().mode == "c" then
+            return true
+          else
+            return not context.in_treesitter_capture "comment" and not context.in_syntax_group "Comment"
+          end
         end,
       }
 
       -- cmp-cmdline setup
-      cmp.setup.cmdline('/', {
-          mapping = cmp.mapping.preset.cmdline(),
-          sources = { { name = 'buffer' } },
+      cmp.setup.cmdline("/", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = { { name = "buffer" } },
       })
 
-      cmp.setup.cmdline(':', {
-          mapping = cmp.mapping.preset.cmdline(),
-          sources = cmp.config.sources({ { name = 'path' } }, {
-              { name = 'cmdline', option = { ignore_cmds = { 'Man', '!' } } },
-          }),
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({ { name = "path" } }, {
+          { name = "cmdline", option = { ignore_cmds = { "Man", "!" } } },
+        }),
       })
 
       cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done {})
     end,
   },
 
-  -- Commenting 
+  -- Commenting
 
   { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
+
   {
     "numToStr/Comment.nvim",
     event = "VeryLazy",
@@ -241,11 +281,21 @@ return {
   {
     "RRethy/vim-illuminate",
     event = "VeryLazy",
-    init = function ()
-      vim.g.Illuminate_ftblacklist = {'alpha', 'NvimTree'}
-      vim.api.nvim_set_keymap('n', '<a-n>', '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>', {noremap=true})
-      vim.api.nvim_set_keymap('n', '<a-p>', '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>', {noremap=true})
-    end
+    init = function()
+      vim.g.Illuminate_ftblacklist = { "alpha", "NvimTree" }
+      vim.api.nvim_set_keymap(
+        "n",
+        "<a-n>",
+        '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>',
+        { noremap = true }
+      )
+      vim.api.nvim_set_keymap(
+        "n",
+        "<a-p>",
+        '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>',
+        { noremap = true }
+      )
+    end,
   },
 
   -- Git integration
@@ -253,39 +303,7 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     event = "VeryLazy",
-    -- opts = {
-    --   signs = {
-    --     add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-    --     change = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-    --     delete = { hl = "GitSignsDelete", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-    --     topdelete = { hl = "GitSignsDelete", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-    --     changedelete = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-    --   },
-    --   signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-    --   watch_gitdir = {
-    --     interval = 1000,
-    --     follow_files = true,
-    --   },
-    --   attach_to_untracked = true,
-    --   current_line_blame_opts = {
-    --     virt_text = true,
-    --     virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
-    --     delay = 1000,
-    --   },
-    --   sign_priority = 6,
-    --   update_debounce = 100,
-    --   status_formatter = nil, -- Use default
-    --   preview_config = {
-    --     -- Options passed to nvim_open_win
-    --     border = "single",
-    --     style = "minimal",
-    --     relative = "cursor",
-    --     row = 0,
-    --     col = 1,
-    --   },
-    -- }
   },
-
 
   -- Competitive programming tests
 
@@ -295,7 +313,7 @@ return {
     ft = "cpp",
     dependencies = {
       {
-        "MunifTanjim/nui.nvim"
+        "MunifTanjim/nui.nvim",
       },
     },
     opts = {
@@ -415,45 +433,95 @@ return {
       {
         "<leader>ca",
         "<cmd>CompetiTest add_testcase<CR>",
-        desc = "CompetiTest Add"
+        desc = "CompetiTest Add",
       },
       {
         "<leader>cr",
         "<cmd>CompetiTest run<CR>",
-        desc = "CompetiTest Run"
+        desc = "CompetiTest Run",
       },
       {
         "<leader>ce",
         "<cmd>CompetiTest edit_testcase<CR>",
-        desc = "CompetiTest Edit"
+        desc = "CompetiTest Edit",
       },
       {
         "<leader>cd",
         "<cmd>CompetiTest delete_testcase<CR>",
-        desc = "CompetiTest Receive Testcases"
+        desc = "CompetiTest Receive Testcases",
       },
       {
         "<leader>ct",
         "<cmd>CompetiTest receive testcases<CR>",
-        desc = "CompetiTest Receive Testcases"
-      }
-    }
+        desc = "CompetiTest Receive Testcases",
+      },
+    },
   },
 
-  -- LaTeX functionality
+  {
+      'MeanderingProgrammer/render-markdown.nvim',
+      dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+      -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+      -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+      ---@module 'render-markdown'
+      ---@type render.md.UserConfig
+      opts = {},
+  },
 
   {
-    "lervag/vimtex",
+    "folke/flash.nvim",
     event = "VeryLazy",
-    ft = {"tex", "cls"},
-    init = function()
-      vim.g.vimtex_view_general_viewer = 'zathura'
-      vim.g.vimtex_compiler_latexmk_engines = {
-        _ = '-xelatex'
-      }
-      vim.g.tex_comment_nospell = 1
-      vim.g.vimtex_compiler_progname = 'nvr'
-      vim.g.vimtex_view_general_options = [[--unique file:@pdf\#src:@line@tex]]
-    end
+    opts = {},
+    -- stylua: ignore
+    keys = {
+      {
+        "s",
+        mode = {
+          "n",
+          "x",
+          "o",
+        },
+        function()
+          require("flash").jump(
+            {
+              search = {
+                mode = function(str)
+                  return "\\<" .. str
+                end,
+              },
+            }
+          )
+        end,
+        desc = "Flash",
+      },
+      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+      { "r", mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+      { "R", mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      {
+        "<c-s>",
+        mode = {
+          "c",
+        },
+        function()
+          require("flash").toggle()
+        end,
+        desc = "Toggle Flash Search",
+      },
+    },
+  },
+
+  -- Detect projects
+
+  {
+    "ahmedkhalf/project.nvim",
+    event = "VeryLazy",
+    opts = {
+      detection_methods = { "pattern" },
+      patterns = { ".git", "Makefile", "package.json" },
+    },
+    config = function(_, opts)
+      require("project_nvim").setup(opts)
+      require("telescope").load_extension "projects"
+    end,
   },
 }

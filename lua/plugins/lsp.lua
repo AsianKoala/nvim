@@ -32,7 +32,7 @@ return {
       },
     },
 
-    init = function ()
+    init = function()
       local function lsp_keymaps(bufnr)
         local opts = { noremap = true, silent = true }
         local keymap = vim.api.nvim_buf_set_keymap
@@ -62,7 +62,6 @@ return {
           client.server_capabilities.documentFormattingProvider = false
         end
 
-
         lsp_keymaps(bufnr)
         require("illuminate").on_attach(client)
       end
@@ -81,7 +80,7 @@ return {
 
         lspconfig[server].setup(Opts)
       end
-    end
+    end,
   },
 
   {
@@ -94,23 +93,23 @@ return {
         lazy = true,
       },
     },
-    opts = { ui = { icons = { package_installed = '', package_pending = '', package_uninstalled = '' } } },
+    opts = { ui = { icons = { package_installed = "", package_pending = "", package_uninstalled = "" } } },
     -- todo
-    config = function (_, opts)
+    config = function(_, opts)
       require("mason").setup(opts)
       require("mason-lspconfig").setup {
         ensure_installed = require("langs").servers,
         automatic_installation = true,
       }
-    end
+    end,
   },
 
   {
-    'jay-babu/mason-null-ls.nvim',
+    "jay-babu/mason-null-ls.nvim",
     event = "VeryLazy",
     opts = {
-      ensure_installed = { "stylua", "cpplint", "clang_format" }
-    }
+      ensure_installed = { "stylua", "cpplint", "clang_format" },
+    },
   },
 
   {
@@ -123,30 +122,22 @@ return {
       },
     },
     opts = function()
-      local nls = require('null-ls')
+      local nls = require "null-ls"
       return {
         sources = {
-            nls.builtins.formatting.stylua,
-            -- nls.builtins.formatting.markdownlint,
-            -- nls.builtins.formatting.clang_format,
-            -- nls.builtins.diagnostics.markdownlint,
-            -- nls.builtins.diagnostics.cpplint,
+          nls.builtins.formatting.stylua,
+          -- nls.builtins.formatting.markdownlint,
+          -- nls.builtins.formatting.clang_format,
+          -- nls.builtins.diagnostics.markdownlint,
+          -- nls.builtins.diagnostics.cpplint,
         },
       }
     end,
   },
 
-  -- fidget.nvim
-
   {
-    'j-hui/fidget.nvim',
-    event = 'LspAttach',
-  },
-
-  {
-    'mrcjkb/rustaceanvim',
-    version = '^5', -- Recommended
+    "mrcjkb/rustaceanvim",
+    version = "^5", -- Recommended
     lazy = false, -- This plugin is already lazy
-  }
-
+  },
 }

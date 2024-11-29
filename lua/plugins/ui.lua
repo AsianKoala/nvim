@@ -1,14 +1,105 @@
 return {
 
+  -- Telescope
+
+  {
+    "nvim-telescope/telescope.nvim",
+    event = "VeryLazy",
+    cmd = { "Telescope" },
+    dependencies = {
+      {
+        "ahmedkhalf/project.nvim",
+      },
+      {
+        "nvim-lua/plenary.nvim",
+      },
+    },
+    opts = function()
+      local actions = require "telescope.actions"
+      return {
+        defaults = {
+          prompt_prefix = " ",
+          selection_caret = " ",
+          path_display = { "smart" },
+          file_ignore_patterns = { ".git/", "node_modules" },
+          mappings = {
+            i = {
+              ["<C-n>"] = actions.cycle_history_next,
+              ["<C-p>"] = actions.cycle_history_prev,
+
+              ["<C-j>"] = actions.move_selection_next,
+              ["<C-k>"] = actions.move_selection_previous,
+
+              ["<C-c>"] = actions.close,
+
+              ["<Down>"] = actions.move_selection_next,
+              ["<Up>"] = actions.move_selection_previous,
+
+              ["<CR>"] = actions.select_default,
+              ["<C-x>"] = actions.select_horizontal,
+              ["<C-v>"] = actions.select_vertical,
+              ["<C-t>"] = actions.select_tab,
+
+              ["<C-u>"] = actions.preview_scrolling_up,
+              ["<C-d>"] = actions.preview_scrolling_down,
+
+              ["<PageUp>"] = actions.results_scrolling_up,
+              ["<PageDown>"] = actions.results_scrolling_down,
+
+              ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+              ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+              ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+              ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+              ["<C-l>"] = actions.complete_tag,
+              ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
+            },
+
+            n = {
+              ["<esc>"] = actions.close,
+              ["<CR>"] = actions.select_default,
+              ["<C-x>"] = actions.select_horizontal,
+              ["<C-v>"] = actions.select_vertical,
+              ["<C-t>"] = actions.select_tab,
+
+              ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+              ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+              ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+              ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+
+              ["j"] = actions.move_selection_next,
+              ["k"] = actions.move_selection_previous,
+              ["H"] = actions.move_to_top,
+              ["M"] = actions.move_to_middle,
+              ["L"] = actions.move_to_bottom,
+
+              ["<Down>"] = actions.move_selection_next,
+              ["<Up>"] = actions.move_selection_previous,
+              ["gg"] = actions.move_to_top,
+              ["G"] = actions.move_to_bottom,
+
+              ["<C-u>"] = actions.preview_scrolling_up,
+              ["<C-d>"] = actions.preview_scrolling_down,
+
+              ["<PageUp>"] = actions.results_scrolling_up,
+              ["<PageDown>"] = actions.results_scrolling_down,
+
+              ["?"] = actions.which_key,
+            },
+          },
+        },
+      }
+    end,
+  },
+
   -- startup screen
 
   {
     "goolord/alpha-nvim",
     event = "VimEnter",
 
-    config = function ()
-      local alpha = require("alpha")
-      local dashboard = require("alpha.themes.dashboard")
+    config = function()
+      local alpha = require "alpha"
+      local dashboard = require "alpha.themes.dashboard"
       dashboard.section.header.val = {
         -- [[ ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
         -- [[ ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠋⠉⣉⣉⠙⠿⠋⣠⢴⣊⣙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
@@ -22,20 +113,20 @@ return {
         -- [[ ⣿⣿⣿⣿⣿⣿⣿⣦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣴⣿⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
         -- [[ ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣤⣄⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣝⡻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
         -- [[ ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    [[⣇⣿⠘⣿⣿⣿⡿⡿⣟⣟⢟⢟⢝⠵⡝⣿⡿⢂⣼⣿⣷⣌⠩⡫⡻⣝⠹⢿⣿⣷]],
-    [[⡆⣿⣆⠱⣝⡵⣝⢅⠙⣿⢕⢕⢕⢕⢝⣥⢒⠅⣿⣿⣿⡿⣳⣌⠪⡪⣡⢑⢝⣇]],
-    [[⡆⣿⣿⣦⠹⣳⣳⣕⢅⠈⢗⢕⢕⢕⢕⢕⢈⢆⠟⠋⠉⠁⠉⠉⠁⠈⠼⢐⢕⢽]],
-    [[⡗⢰⣶⣶⣦⣝⢝⢕⢕⠅⡆⢕⢕⢕⢕⢕⣴⠏⣠⡶⠛⡉⡉⡛⢶⣦⡀⠐⣕⢕]],
-    [[⡝⡄⢻⢟⣿⣿⣷⣕⣕⣅⣿⣔⣕⣵⣵⣿⣿⢠⣿⢠⣮⡈⣌⠨⠅⠹⣷⡀⢱⢕]],
-    [[⡝⡵⠟⠈⢀⣀⣀⡀⠉⢿⣿⣿⣿⣿⣿⣿⣿⣼⣿⢈⡋⠴⢿⡟⣡⡇⣿⡇⡀⢕]],
-    [[⡝⠁⣠⣾⠟⡉⡉⡉⠻⣦⣻⣿⣿⣿⣿⣿⣿⣿⣿⣧⠸⣿⣦⣥⣿⡇⡿⣰⢗⢄]],
-    [[⠁⢰⣿⡏⣴⣌⠈⣌⠡⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣬⣉⣉⣁⣄⢖⢕⢕⢕]],
-    [[⡀⢻⣿⡇⢙⠁⠴⢿⡟⣡⡆⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣵⣵⣿]],
-    [[⡻⣄⣻⣿⣌⠘⢿⣷⣥⣿⠇⣿⣿⣿⣿⣿⣿⠛⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    [[⣷⢄⠻⣿⣟⠿⠦⠍⠉⣡⣾⣿⣿⣿⣿⣿⣿⢸⣿⣦⠙⣿⣿⣿⣿⣿⣿⣿⣿⠟]],
-    [[⡕⡑⣑⣈⣻⢗⢟⢞⢝⣻⣿⣿⣿⣿⣿⣿⣿⠸⣿⠿⠃⣿⣿⣿⣿⣿⣿⡿⠁⣠]],
-    [[⡝⡵⡈⢟⢕⢕⢕⢕⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣿⣿⣿⣿⣿⠿⠋⣀⣈⠙]],
-    [[⡝⡵⡕⡀⠑⠳⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⢉⡠⡲⡫⡪⡪⡣]],
+        [[⣇⣿⠘⣿⣿⣿⡿⡿⣟⣟⢟⢟⢝⠵⡝⣿⡿⢂⣼⣿⣷⣌⠩⡫⡻⣝⠹⢿⣿⣷]],
+        [[⡆⣿⣆⠱⣝⡵⣝⢅⠙⣿⢕⢕⢕⢕⢝⣥⢒⠅⣿⣿⣿⡿⣳⣌⠪⡪⣡⢑⢝⣇]],
+        [[⡆⣿⣿⣦⠹⣳⣳⣕⢅⠈⢗⢕⢕⢕⢕⢕⢈⢆⠟⠋⠉⠁⠉⠉⠁⠈⠼⢐⢕⢽]],
+        [[⡗⢰⣶⣶⣦⣝⢝⢕⢕⠅⡆⢕⢕⢕⢕⢕⣴⠏⣠⡶⠛⡉⡉⡛⢶⣦⡀⠐⣕⢕]],
+        [[⡝⡄⢻⢟⣿⣿⣷⣕⣕⣅⣿⣔⣕⣵⣵⣿⣿⢠⣿⢠⣮⡈⣌⠨⠅⠹⣷⡀⢱⢕]],
+        [[⡝⡵⠟⠈⢀⣀⣀⡀⠉⢿⣿⣿⣿⣿⣿⣿⣿⣼⣿⢈⡋⠴⢿⡟⣡⡇⣿⡇⡀⢕]],
+        [[⡝⠁⣠⣾⠟⡉⡉⡉⠻⣦⣻⣿⣿⣿⣿⣿⣿⣿⣿⣧⠸⣿⣦⣥⣿⡇⡿⣰⢗⢄]],
+        [[⠁⢰⣿⡏⣴⣌⠈⣌⠡⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣬⣉⣉⣁⣄⢖⢕⢕⢕]],
+        [[⡀⢻⣿⡇⢙⠁⠴⢿⡟⣡⡆⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣵⣵⣿]],
+        [[⡻⣄⣻⣿⣌⠘⢿⣷⣥⣿⠇⣿⣿⣿⣿⣿⣿⠛⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
+        [[⣷⢄⠻⣿⣟⠿⠦⠍⠉⣡⣾⣿⣿⣿⣿⣿⣿⢸⣿⣦⠙⣿⣿⣿⣿⣿⣿⣿⣿⠟]],
+        [[⡕⡑⣑⣈⣻⢗⢟⢞⢝⣻⣿⣿⣿⣿⣿⣿⣿⠸⣿⠿⠃⣿⣿⣿⣿⣿⣿⡿⠁⣠]],
+        [[⡝⡵⡈⢟⢕⢕⢕⢕⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣿⣿⣿⣿⣿⠿⠋⣀⣈⠙]],
+        [[⡝⡵⡕⡀⠑⠳⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⢉⡠⡲⡫⡪⡪⡣]],
       }
       dashboard.section.buttons.val = {
         dashboard.button("f", ">find file", ":Telescope find_files <CR>"),
@@ -47,7 +138,7 @@ return {
       }
       dashboard.section.buttons.opts = {
         spacing = 0,
-        position = "center"
+        position = "center",
       }
       local function footer()
         return "こんばんは\n  ニール"
@@ -61,7 +152,7 @@ return {
 
       dashboard.opts.opts.noautocmd = true
       alpha.setup(dashboard.opts)
-    end
+    end,
   },
 
   -- bufferline
@@ -76,86 +167,12 @@ return {
     },
     opts = {
       options = {
-        close_command = "Bdelete! %d",       -- can be a string | function, see "Mouse actions"
+        close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
         right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
         offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
-        separator_style = "thin",            -- | "thick" | "thin" | { 'any', 'any' },
+        separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
       },
-      -- highlights = {
-      --   fill = {
-      --     fg = { attribute = "fg", highlight = "#ff0000" },
-      --     bg = { attribute = "bg", highlight = "TabLine" },
-      --   },
-      --   background = {
-      --     fg = { attribute = "fg", highlight = "TabLine" },
-      --     bg = { attribute = "bg", highlight = "TabLine" },
-      --   },
-      --   buffer_visible = {
-      --     fg = { attribute = "fg", highlight = "TabLine" },
-      --     bg = { attribute = "bg", highlight = "TabLine" },
-      --   },
-      --   close_button = {
-      --     fg = { attribute = "fg", highlight = "TabLine" },
-      --     bg = { attribute = "bg", highlight = "TabLine" },
-      --   },
-      --   close_button_visible = {
-      --     fg = { attribute = "fg", highlight = "TabLine" },
-      --     bg = { attribute = "bg", highlight = "TabLine" },
-      --   },
-      --   tab_selected = {
-      --     fg = { attribute = "fg", highlight = "Normal" },
-      --     bg = { attribute = "bg", highlight = "Normal" },
-      --   },
-      --   tab = {
-      --     fg = { attribute = "fg", highlight = "TabLine" },
-      --     bg = { attribute = "bg", highlight = "TabLine" },
-      --   },
-      --   tab_close = {
-      --     -- fg = {attribute='fg',highlight='LspDiagnosticsDefaultError'},
-      --     fg = { attribute = "fg", highlight = "TabLineSel" },
-      --     bg = { attribute = "bg", highlight = "Normal" },
-      --   },
-      --   duplicate_selected = {
-      --     fg = { attribute = "fg", highlight = "TabLineSel" },
-      --     bg = { attribute = "bg", highlight = "TabLineSel" },
-      --     italic = true,
-      --   },
-      --   duplicate_visible = {
-      --     fg = { attribute = "fg", highlight = "TabLine" },
-      --     bg = { attribute = "bg", highlight = "TabLine" },
-      --     italic = true,
-      --   },
-      --   duplicate = {
-      --     fg = { attribute = "fg", highlight = "TabLine" },
-      --     bg = { attribute = "bg", highlight = "TabLine" },
-      --     italic = true,
-      --   },
-      --   modified = {
-      --     fg = { attribute = "fg", highlight = "TabLine" },
-      --     bg = { attribute = "bg", highlight = "TabLine" },
-      --   },
-      --   modified_selected = {
-      --     fg = { attribute = "fg", highlight = "Normal" },
-      --     bg = { attribute = "bg", highlight = "Normal" },
-      --   },
-      --   modified_visible = {
-      --     fg = { attribute = "fg", highlight = "TabLine" },
-      --     bg = { attribute = "bg", highlight = "TabLine" },
-      --   },
-      --   separator = {
-      --     fg = { attribute = "bg", highlight = "TabLine" },
-      --     bg = { attribute = "bg", highlight = "TabLine" },
-      --   },
-      --   separator_selected = {
-      --     fg = { attribute = "bg", highlight = "Normal" },
-      --     bg = { attribute = "bg", highlight = "Normal" },
-      --   },
-      --   indicator_selected = {
-      --     fg = { attribute = "fg", highlight = "LspDiagnosticsDefaultHint" },
-      --     bg = { attribute = "bg", highlight = "Normal" },
-      --   },
-      -- },
-    }
+    },
   },
 
   -- statusline
@@ -163,7 +180,7 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = { "VimEnter", "InsertEnter", "BufReadPre", "BufAdd", "BufNew", "BufReadPost" },
-    opts = function ()
+    opts = function()
       local hide_in_width = function()
         return vim.fn.winwidth(0) > 80
       end
@@ -218,8 +235,7 @@ return {
           lualine_z = { "progress" },
         },
       }
-
-    end
+    end,
   },
 
   -- nvim-tree
@@ -227,16 +243,14 @@ return {
   {
     "kyazdani42/nvim-tree.lua",
     event = "VeryLazy",
-    opts = function ()
-      local api = require("nvim-tree.api")
-
+    opts = function()
       return {
         update_focused_file = {
           enable = true,
           update_cwd = true,
         },
         git = {
-          ignore = false -- show files that are in .gitignore
+          ignore = false, -- show files that are in .gitignore
         },
         renderer = {
           icons = {
@@ -287,12 +301,11 @@ return {
         },
         actions = {
           open_file = {
-            resize_window = false
-          }
-        }
+            resize_window = false,
+          },
+        },
       }
-
-    end
+    end,
   },
 
   -- Terminal inside nvim
@@ -317,7 +330,7 @@ return {
       },
     },
 
-    config = function (_, opts)
+    config = function(_, opts)
       require("toggleterm").setup(opts)
 
       function _G.set_terminal_keymaps()
@@ -330,8 +343,7 @@ return {
       end
 
       vim.cmd "autocmd! TermOpen term://* lua set_terminal_keymaps()"
-      
-    end
+    end,
   },
 
   -- Icons for nvim-tree
@@ -350,7 +362,7 @@ return {
       },
       color_icons = true,
       default = true,
-    }
+    },
   },
 
   -- keybindings visual
@@ -359,21 +371,52 @@ return {
     "folke/which-key.nvim",
     event = "VeryLazy",
 
-    config = function ()
+    config = function()
       require("which-key").setup {}
-    end
+    end,
   },
-
 
   -- ui components
 
   {
     "MunifTanjim/nui.nvim",
-    event = "VeryLazy"
+    event = "VeryLazy",
   },
 
   {
-    'stevearc/dressing.nvim',
+    "stevearc/dressing.nvim",
     event = "VeryLazy",
   },
+
+  -- fidget.nvim
+
+  {
+    "j-hui/fidget.nvim",
+    event = "LspAttach",
+  },
+
+  -- Add visual indent guide to lines
+
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufReadPre",
+    main = "ibl",
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {},
+  },
+
+  -- Measure startup time
+
+  {
+    "dstein64/vim-startuptime",
+    event = "VeryLazy",
+    -- lazy-load on a command
+    cmd = "StartupTime",
+    -- init is called during startup. Configuration for vim plugins typically should be set in an init function
+    init = function()
+      vim.g.startuptime_tries = 10
+    end,
+  },
+
 }

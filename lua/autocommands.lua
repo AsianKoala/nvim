@@ -15,6 +15,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.opt_local.spell = true
   end,
 })
+
 -- Automatically close tab/vim when nvim-tree is the last window in the tab
 vim.cmd "autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif"
 
@@ -27,13 +28,6 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   callback = function()
     vim.highlight.on_yank { higroup = "Visual", timeout = 200 }
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  pattern = { "*.java" },
-  callback = function()
-    vim.lsp.codelens.refresh()
   end,
 })
 
@@ -51,10 +45,3 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
     end
   end,
 })
-
--- vim.api.nvim_create_autocmd({ "BufEnter" }, {
---   callback = function()
---     vim.cmd [[ autocmd BufEnter * if &buftype ==# 'terminal' | startinsert! | endif ]]
---   end,
--- })
---
