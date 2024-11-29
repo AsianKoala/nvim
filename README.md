@@ -3,15 +3,15 @@
 
 ![image](https://files.catbox.moe/c0nsbi.png)
 
+note that the colorscheme can be switched to the one in pictures by editing ./lua/plugins/colorscheme.lua
+
 ## Requirements
-- python3
 - `ripgrep` for `Telescope`
-- `pandoc, latex, zathura` for `VimTeX`
+- a [nerd font](https://github.com/ryanoasis/nerd-fonts) for icons
 - probably some other stuff
-- some [nerd font](https://github.com/ryanoasis/nerd-fonts) for icons
 
 ## Install
-**Guaranteed** to work on neovim v0.10.1
+**Guaranteed** to work on neovim v0.10.2
 
 Clone this under your ~/.config/nvim directory
 
