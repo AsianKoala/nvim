@@ -9,6 +9,7 @@ note that the colorscheme can be switched to the one in pictures by editing ./lu
 - `ripgrep` for `Telescope`
 - a [nerd font](https://github.com/ryanoasis/nerd-fonts) for icons
 - probably some other stuff
+- imagemagick
 
 ## Install
 **Guaranteed** to work on neovim v0.10.2
