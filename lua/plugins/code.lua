@@ -28,6 +28,9 @@ return {
         "sxhkdrc",
         "lua",
         "rust",
+        "markdown",
+        "markdown_inline",
+        "latex"
       },
       autotag = {
         enable = true,
