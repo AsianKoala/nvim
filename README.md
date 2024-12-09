@@ -3,8 +3,6 @@
 
 ![image](https://files.catbox.moe/c0nsbi.png)
 
-note that the colorscheme can be switched to the one in pictures by editing ./lua/plugins/colorscheme.lua
-
 ## Requirements
 I use neovim v0.10.2, other versions may/may not work.
 
