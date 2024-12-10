@@ -132,6 +132,7 @@ return {
         dashboard.button("f", ">find file", ":Telescope find_files <CR>"),
         dashboard.button("p", ">find project", ":lua require('telescope').extensions.projects.projects()<CR>"),
         dashboard.button("s", ">scratchpad", ":e ~/documents/scratchpad <CR>"),
+        dashboard.button("r", ">recent files", ":Telescope oldfiles <CR>"),
         dashboard.button("c", ">config", ":e ~/dotfiles/nvim/init.lua <CR>"),
         dashboard.button("t", ">live grep", ":Telescope live_grep<CR>"),
         dashboard.button("q", ">quit", ":qa<CR>"),
@@ -420,21 +421,20 @@ return {
   },
 
   {
-    'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {
       latex = {
-          enabled = true,
-          converter = 'latex2text',
-          highlight = 'RenderMarkdownMath',
-          top_pad = 0,
-          bottom_pad = 0,
+        enabled = true,
+        converter = "latex2text",
+        highlight = "RenderMarkdownMath",
+        top_pad = 0,
+        bottom_pad = 0,
       },
     },
   },
-
 }
