@@ -64,13 +64,3 @@ keymap("x", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(v
 -- Lsp
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
 
-
-local function convert_to_pdf()
-    local file_name = vim.fn.expand("%:r") -- Get the current file name without extension
-    local cmd = string.format("pandoc -s -i %s.md -o %s.pdf >/dev/null 2>&1", file_name, file_name)
-    vim.fn.system(cmd) -- Run the shell command without displaying output
-end
-
-vim.api.nvim_create_user_command("PandocToPDF", convert_to_pdf, {})
-
-keymap("n", "<leader>p", ":PandocToPDF<CR>", opts);
