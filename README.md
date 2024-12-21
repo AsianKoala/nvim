@@ -22,5 +22,5 @@ For markdown notes functionality
 Clone this under your ~/.config/nvim directory
 
 ```
-git clone https://github.com/AsianKoala/nvim.git ~/.config/nvim
+git clone https://github.com/neilmehra/nvim.git ~/.config/nvim
 ```
