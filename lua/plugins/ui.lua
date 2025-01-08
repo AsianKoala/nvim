@@ -131,7 +131,8 @@ return {
       dashboard.section.buttons.val = {
         dashboard.button("f", ">find file", ":Telescope find_files <CR>"),
         dashboard.button("p", ">find project", ":lua require('telescope').extensions.projects.projects()<CR>"),
-        dashboard.button("s", ">scratchpad", ":e ~/documents/scratchpad <CR>"),
+        dashboard.button("s", ">scratchpad", ":e ~/neil/scratchpad <CR>"),
+        dashboard.button("d", ">scratchpad", ":e ~/neil/todo <CR>"),
         dashboard.button("r", ">recent files", ":Telescope oldfiles <CR>"),
         dashboard.button("c", ">config", ":e ~/dotfiles/nvim/init.lua <CR>"),
         dashboard.button("t", ">live grep", ":Telescope live_grep<CR>"),
