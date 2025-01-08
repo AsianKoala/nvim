@@ -13,31 +13,32 @@ return {
       },
     },
     cmd = { "TSUpdateSync" },
-    opts = {
-      highlight = { enable = true },
-      indent = { enable = true },
-      ensure_installed = {
-        "bash",
-        "cpp",
-        "dockerfile",
-        "gitignore",
-        "html",
-        "java",
-        "json",
-        "python",
-        "sxhkdrc",
-        "lua",
-        "rust",
-        "markdown",
-        "markdown_inline",
-        "latex"
-      },
-      autotag = {
-        enable = true,
-      },
-    },
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
+    config = function()
+      require("nvim-treesitter.configs").setup {
+        ensure_installed = {
+          "asm",
+          "bash",
+          "bibtex",
+          "cmake",
+          "cpp",
+          "c",
+          "gitignore",
+          "html",
+          "json",
+          "python",
+          "sxhkdrc",
+          "lua",
+          "rust",
+          "markdown",
+          "markdown_inline",
+          "latex",
+        },
+        highlight = { enable = true },
+        indent = { enable = true },
+        autotag = {
+          enable = true,
+        },
+      }
     end,
   },
 
@@ -461,7 +462,6 @@ return {
     },
   },
 
-
   {
     "folke/flash.nvim",
     event = "VeryLazy",
@@ -522,18 +522,6 @@ return {
   {
     "3rd/image.nvim",
     event = "VeryLazy",
-    dependencies = {
-      {
-        "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate",
-        config = function()
-          require("nvim-treesitter.configs").setup({
-            ensure_installed = { "markdown" },
-            highlight = { enable = true },
-          })
-        end,
-      },
-    },
     opts = {
       backend = "kitty",
       integrations = {

@@ -115,10 +115,17 @@ local function convert_to_pdf()
         return
     end
 
-    -- Prepare the Pandoc command
+    -- Get the directory of the current markdown file
+    local file_dir = vim.fn.fnamemodify(full_path, ":h")
+
+    -- Get the filename of the markdown file
+    local file_name = vim.fn.fnamemodify(full_path, ":t")
+
+    -- Prepare the Pandoc command with 'cd' to set the cwd
     local cmd = string.format(
-        'pandoc -s "%s" -o "%s" >/dev/null 2>&1',
-        full_path,
+        'cd "%s" && pandoc -s "%s" -o "%s" >/dev/null 2>&1',
+        file_dir,
+        file_name,
         output_pdf
     )
 
