@@ -58,25 +58,20 @@ end
 
 -- Define absolute base directories
 -- Ensure these paths do NOT end with a trailing slash
-local base_source = "/home/neil/neil/notes/source"      -- Replace with your actual absolute path
-local base_compiled = "/home/neil/neil/notes/compiled"  -- Replace with your actual absolute path
+local base_source = "/home/neil/neil/notes/source"
+local base_compiled = "/home/neil/neil/notes/compiled"
 
--- Function to convert Markdown to PDF with detailed logging
 local function convert_to_pdf()
-    -- Get the full path of the current file
     local full_path = vim.fn.expand("%:p") -- e.g., /home/neil/neil/notes/source/subdir/file_name.md
 
-    -- Normalize base_source and base_compiled by stripping trailing slashes
-    local source_abs = strip_trailing_slash(vim.fn.fnamemodify(base_source, ":p"))      -- Absolute path to notes/source
-    local compiled_abs = strip_trailing_slash(vim.fn.fnamemodify(base_compiled, ":p"))  -- Absolute path to notes/compiled
+    local source_abs = strip_trailing_slash(vim.fn.fnamemodify(base_source, ":p"))
+    local compiled_abs = strip_trailing_slash(vim.fn.fnamemodify(base_compiled, ":p"))
 
-    -- Validate that base_source exists
     if not vim.fn.isdirectory(source_abs) then
         vim.notify("Source directory does not exist: " .. source_abs, vim.log.levels.ERROR)
         return
     end
 
-    -- Validate or create base_compiled directory
     if not vim.fn.isdirectory(compiled_abs) then
         vim.notify("Compiled directory does not exist. Attempting to create: " .. compiled_abs, vim.log.levels.INFO)
         local mkdir_result = vim.fn.mkdir(compiled_abs, "p")
@@ -88,40 +83,30 @@ local function convert_to_pdf()
         end
     end
 
-    -- Ensure the current file is inside the source directory
-    -- Append a single slash to source_abs for correct comparison
     local source_with_slash = source_abs .. "/"
     if not vim.startswith(full_path, source_with_slash) then
         vim.notify("File is not inside source directory: " .. source_abs, vim.log.levels.ERROR)
         return
     end
 
-    -- Get the relative path from source directory
     local relative_path = full_path:sub(#source_abs + 2) -- +2 to remove the '/' separator
 
-    -- Change the extension from .md to .pdf
     local relative_pdf_path = vim.fn.fnamemodify(relative_path, ":r") .. ".pdf"
 
-    -- Define the full output path in the compiled directory
     local output_pdf = compiled_abs .. "/" .. relative_pdf_path
 
-    -- Get the directory part of the output path
     local output_dir = vim.fn.fnamemodify(output_pdf, ":h")
 
-    -- Create the output directory recursively if it doesn't exist
     local mkdir_result = vim.fn.mkdir(output_dir, "p")
     if mkdir_result == 0 and not vim.fn.isdirectory(output_dir) then
         vim.notify("Failed to create directory: " .. output_dir, vim.log.levels.ERROR)
         return
     end
 
-    -- Get the directory of the current markdown file
     local file_dir = vim.fn.fnamemodify(full_path, ":h")
 
-    -- Get the filename of the markdown file
     local file_name = vim.fn.fnamemodify(full_path, ":t")
 
-    -- Prepare the Pandoc command with 'cd' to set the cwd
     local cmd = string.format(
         'cd "%s" && pandoc -s "%s" -o "%s" >/dev/null 2>&1',
         file_dir,
@@ -129,10 +114,8 @@ local function convert_to_pdf()
         output_pdf
     )
 
-    -- Execute the command
     vim.fn.system(cmd)
 
-    -- Check for errors
     if vim.v.shell_error ~= 0 then
         vim.notify("Pandoc conversion failed for: " .. full_path, vim.log.levels.ERROR)
     end
