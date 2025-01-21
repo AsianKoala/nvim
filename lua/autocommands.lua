@@ -47,7 +47,6 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   end,
 })
 
--- Helper function to remove trailing slashes
 local function strip_trailing_slash(path)
     if path:sub(-1) == "/" then
         return path:sub(1, -2)
@@ -56,7 +55,6 @@ local function strip_trailing_slash(path)
     end
 end
 
--- Define absolute base directories
 -- Ensure these paths do NOT end with a trailing slash
 local base_source = "/home/neil/neil/notes/source"
 local base_compiled = "/home/neil/neil/notes/compiled"
@@ -126,4 +124,28 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     callback = function()
         convert_to_pdf()
     end,
+})
+
+-- Autocommand group for LaTeX compilation
+vim.api.nvim_create_augroup('LatexAutocompile', { clear = true })
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  group = 'LatexAutocompile',
+  pattern = '*.tex',
+  callback = function()
+    local file = vim.fn.expand('%')
+    local cmd = { 'pdflatex', '-interaction=nonstopmode', file }
+
+    vim.fn.jobstart(cmd, {
+      on_exit = function(_, exit_code, _)
+        vim.schedule(function()
+          if exit_code == 0 then
+            vim.notify('LaTeX: Compilation succeeded!', vim.log.levels.INFO)
+          else
+            vim.notify('LaTeX: Compilation failed!', vim.log.levels.ERROR)
+          end
+        end)
+      end,
+    })
+  end,
 })
