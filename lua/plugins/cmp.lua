@@ -1,21 +1,27 @@
 return {
   {
     "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
     dependencies = {
       {
         "hrsh7th/cmp-nvim-lsp",
+        event = "InsertEnter",
       },
       {
         "hrsh7th/cmp-buffer",
+        event = "InsertEnter",
       },
       {
         "hrsh7th/cmp-path",
+        event = "InsertEnter",
       },
       {
         "hrsh7th/cmp-cmdline",
+        event = "InsertEnter",
       },
       {
         "saadparwaiz1/cmp_luasnip",
+        event = "InsertEnter",
       },
       {
         "L3MON4D3/LuaSnip",
@@ -26,12 +32,12 @@ return {
       },
       {
         "hrsh7th/cmp-nvim-lua",
+        event = "InsertEnter",
       },
     },
     init = function()
       vim.opt.completeopt = { "menu", "menuone", "noselect" }
     end,
-    event = "InsertEnter",
     config = function()
       local cmp = require "cmp"
       local cmp_autopairs = require "nvim-autopairs.completion.cmp"

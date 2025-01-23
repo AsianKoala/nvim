@@ -32,12 +32,12 @@ return {
   {
     "mrcjkb/rustaceanvim",
     version = "^5", -- Recommended
-    lazy = false,
+    ft = "rust",
   },
 
   {
     "neovim/nvim-lspconfig",
-    lazy = true,
+    event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       {
         "williamboman/mason.nvim",
