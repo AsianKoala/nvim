@@ -12,7 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {
-  install = { colorscheme = { "tokyonight-night" } },
   disabled_plugins = {
         "gzip",
         "matchit",

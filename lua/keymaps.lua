@@ -63,3 +63,13 @@ keymap("x", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(v
 
 -- Lsp
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+
+-- Oil
+keymap("n", "-", "<cmd>Oil<CR>")
+
+-- Illuminate
+
+keymap("n", "<a-n>", '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>') -- used to be noremap
+keymap("n", "<a-p>", '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>')
+
+
