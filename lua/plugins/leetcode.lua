@@ -12,7 +12,7 @@ return {
       lang = "cpp",
       injector = { ---@type table<lc.lang, lc.inject>
         ["cpp"] = {
-          before = { "#include <bits/stdc++.h>", "using namespace std;" },
+          before = { "#include <bits/stdc++.h>"},
           after = "int main() {}",
         },
       },
