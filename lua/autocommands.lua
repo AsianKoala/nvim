@@ -126,17 +126,18 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     end,
 })
 
--- Autocommand group for LaTeX compilation
 vim.api.nvim_create_augroup('LatexAutocompile', { clear = true })
 
 vim.api.nvim_create_autocmd('BufWritePost', {
   group = 'LatexAutocompile',
   pattern = '*.tex',
   callback = function()
-    local file = vim.fn.expand('%')
-    local cmd = { 'pdflatex', '-interaction=nonstopmode', file }
-
+    local file = vim.fn.expand('%:p')
+    local dir = vim.fn.fnamemodify(file, ':h')
+    local filename = vim.fn.fnamemodify(file, ':t')
+    local cmd = { 'pdflatex', '-interaction=nonstopmode', filename }
     vim.fn.jobstart(cmd, {
+      cwd = dir,
       on_exit = function(_, exit_code, _)
         vim.schedule(function()
           if exit_code == 0 then
