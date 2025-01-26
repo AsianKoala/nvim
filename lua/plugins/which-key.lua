@@ -1,7 +1,7 @@
 return {
   {
     "folke/which-key.nvim",
-    event = "BufReadPost",
+    event = "VeryLazy",
     opts = {},
   },
 

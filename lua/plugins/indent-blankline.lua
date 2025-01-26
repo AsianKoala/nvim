@@ -2,7 +2,7 @@ return {
   -- Add visual indent guide to lines
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPre",
+    event = "VeryLazy",
     main = "ibl",
     ---@module "ibl"
     ---@type ibl.config
