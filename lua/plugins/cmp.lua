@@ -1,7 +1,6 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
     dependencies = {
       {
         "hrsh7th/cmp-nvim-lsp",
@@ -20,6 +19,7 @@ return {
       },
       {
         "L3MON4D3/LuaSnip",
+        event = "InsertEnter",
         dependencies = {
           "rafamadriz/friendly-snippets",
         },
@@ -28,6 +28,7 @@ return {
         "hrsh7th/cmp-nvim-lua",
       },
     },
+    event = "InsertEnter",
     init = function()
       vim.opt.completeopt = { "menu", "menuone", "noselect" }
     end,

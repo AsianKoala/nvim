@@ -17,7 +17,6 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 end
 
-
 vim.g.rustaceanvim = {
   -- LSP configuration
   server = {
@@ -28,42 +27,74 @@ vim.g.rustaceanvim = {
 }
 
 return {
-
-  {
-    "mrcjkb/rustaceanvim",
-    version = "^5", -- Recommended
-    ft = "rust",
-  },
-
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPost", "BufNewFile" },
+    lazy = true,
     dependencies = {
       {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
         "hrsh7th/cmp-nvim-lsp",
-        "jay-babu/mason-null-ls.nvim",
-        "jose-elias-alvarez/null-ls.nvim",
-        "nvim-lua/plenary.nvim",
       },
     },
 
     init = function()
       local lspconfig = require "lspconfig"
+
       local on_attach = function(client, bufnr)
         lsp_keymaps(bufnr)
         require("illuminate").on_attach(client)
       end
 
-      -- mason
-      local cmp = require "cmp"
-      local cmp_lsp = require "cmp_nvim_lsp"
+      lspconfig["clangd"].setup {
+        on_attach = on_attach,
+      }
 
-      local capabilities =
-        vim.tbl_deep_extend("force", {}, vim.lsp.protocol.make_client_capabilities(), cmp_lsp.default_capabilities())
+      lspconfig["pyright"].setup {
+        on_attach = on_attach,
+      }
 
-      require("mason").setup()
+      lspconfig["bashls"].setup {
+        on_attach = on_attach,
+      }
+
+      lspconfig["jsonls"].setup {
+        on_attach = on_attach,
+      }
+
+      lspconfig["lua_ls"].setup {
+        on_attach = on_attach,
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim" },
+            },
+            workspace = {
+              library = {
+                [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+                [vim.fn.stdpath "config" .. "/lua"] = true,
+              },
+            },
+            telemetry = {
+              enable = false,
+            },
+          },
+        },
+      }
+    end,
+  },
+
+  {
+    "williamboman/mason.nvim",
+    cmd = "Mason",
+    event = "BufReadPre",
+    dependencies = {
+      {
+        "williamboman/mason-lspconfig.nvim",
+        lazy = true,
+      },
+    },
+    opts = { ui = { icons = { package_installed = "", package_pending = "", package_uninstalled = "" } } },
+    config = function(_, opts)
+      require("mason").setup(opts)
       require("mason-lspconfig").setup {
         ensure_installed = {
           "lua_ls",
@@ -72,75 +103,40 @@ return {
           "jsonls",
           "clangd",
         },
-
-        handlers = {
-          ["clangd"] = function()
-            lspconfig["clangd"].setup {
-              on_attach = on_attach,
-              capabilities = capabilities,
-            }
-          end,
-
-          ["pyright"] = function()
-            lspconfig["pyright"].setup {
-              on_attach = on_attach,
-              capabilities = capabilities,
-            }
-          end,
-
-          ["bashls"] = function()
-            lspconfig["bashls"].setup {
-              on_attach = on_attach,
-              capabilities = capabilities,
-            }
-          end,
-
-          ["jsonls"] = function()
-            lspconfig["jsonls"].setup {
-              on_attach = on_attach,
-              capabilities = capabilities,
-            }
-          end,
-
-
-          ["lua_ls"] = function()
-            lspconfig["lua_ls"].setup {
-              on_attach = on_attach,
-              capabilities = capabilities,
-              settings = {
-                Lua = {
-                  diagnostics = {
-                    globals = { "vim" },
-                  },
-                  workspace = {
-                    library = {
-                      [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-                      [vim.fn.stdpath "config" .. "/lua"] = true,
-                    },
-                  },
-                  telemetry = {
-                    enable = false,
-                  },
-                },
-              },
-            }
-          end,
-        },
       }
+    end,
+  },
 
-      -- null-ls
+  {
+    "jay-babu/mason-null-ls.nvim",
+    event = "VeryLazy",
+    opts = {
+      ensure_installed = { "stylua", "cpplint", "clang_format" },
+    },
+  },
+
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    event = "BufReadPre",
+    dependencies = {
+      {
+        "nvim-lua/plenary.nvim",
+        lazy = true,
+      },
+    },
+    opts = function()
       local nls = require "null-ls"
-      nls.setup {
+      return {
         sources = {
           nls.builtins.formatting.stylua,
         },
       }
-
-      -- mason null ls
-      require("mason-null-ls").setup {
-        ensure_installed = { "stylua", "cpplint", "clang_format" },
-        automatic_installation = true,
-      }
     end,
+  },
+
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^5", -- Recommended
+    lazy = false, -- This plugin is already lazy
   },
 }
