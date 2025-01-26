@@ -6,11 +6,13 @@ return {
     opts = {},
 
     config = function()
-      require("oil").setup({
-
-      })
+      require("oil").setup {
+        view_options = {
+          show_hidden = true,
+        },
+      }
     end,
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    event = "VeryLazy"
+    event = "VeryLazy",
   },
 }
