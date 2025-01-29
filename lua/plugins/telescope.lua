@@ -1,5 +1,17 @@
 return {
   {
+    "ahmedkhalf/project.nvim",
+    event = "VeryLazy",
+    opts = {
+      detection_methods = { "pattern" },
+      patterns = { ".git", "Makefile", "package.json" },
+    },
+    config = function(_, opts)
+      require("project_nvim").setup(opts)
+      require("telescope").load_extension "projects"
+    end,
+  },
+  {
     "nvim-telescope/telescope.nvim",
     lazy = true,
     cmd = { "Telescope" },

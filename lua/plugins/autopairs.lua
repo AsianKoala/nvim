@@ -16,8 +16,6 @@ return {
       disable_filetype = { "TelescopePrompt" },
       ts_config = {
         lua = { "string", "source" },
-        javascript = { "string", "template_string" },
-        -- java = false,
       },
     },
   },

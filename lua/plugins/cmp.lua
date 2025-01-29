@@ -156,6 +156,7 @@ return {
           behavior = cmp.ConfirmBehavior.Replace,
           select = false,
         },
+        -- window = require('noirbuddy.plugins.cmp').window,
         window = {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),

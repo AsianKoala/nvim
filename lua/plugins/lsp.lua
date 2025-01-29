@@ -41,7 +41,7 @@ return {
 
       local on_attach = function(client, bufnr)
         lsp_keymaps(bufnr)
-        require("illuminate").on_attach(client)
+        -- require("illuminate").on_attach(client)
       end
 
       lspconfig["clangd"].setup {

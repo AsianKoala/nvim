@@ -5,19 +5,22 @@ return {
     -- "rockerBOO/boo-colorscheme-nvim",
     "jesseleite/nvim-noirbuddy",
     -- "tiagovla/tokyodark.nvim",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
+    -- "slugbyte/lackluster.nvim",
+    -- "wnkz/monoglow.nvim",
+    -- "kdheepak/monochrome.nvim",
+    lazy = false,
+    priority = 1000,
     dependencies = {
-      {
-        "rktjmp/lush.nvim",
-      },
-      { "tjdevries/colorbuddy.nvim", branch = "dev" },
+      { "tjdevries/colorbuddy.nvim" },
     },
     opts = {
-      colors = {
-        primary = "#E4579B",
-        secondary = "#93518B",
-      },
+    colors = {
+      primary = "#915691",
+    }
+    -- colors = {
+    --   primary = "#E4579B",
+    --   secondary = "#93518B",
+    -- },
     },
     config = function(_, opts)
       require("noirbuddy").setup(opts)
