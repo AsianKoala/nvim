@@ -35,8 +35,19 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 -- Clear highlights
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
--- Close buffers
-keymap("n", "<S-q>", "<cmd>b#|bd#<CR>", opts)
+-- Close buffer without deleting window arrangement
+local function delete_buffer()
+  local current_buf = vim.api.nvim_get_current_buf()
+  local alt_buf = vim.fn.bufnr('#')
+  if vim.api.nvim_buf_is_valid(alt_buf) and vim.api.nvim_buf_is_loaded(alt_buf) then
+    vim.cmd('buffer ' .. alt_buf)
+  else
+    vim.cmd('bnext')
+  end
+  vim.cmd('bdelete ' .. current_buf)
+end
+
+keymap("n", "<S-q>", delete_buffer, opts)
 
 -- Better paste
 keymap("v", "p", '"_dP', opts)
@@ -58,15 +69,5 @@ keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
 keymap("x", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts)
 
--- Lsp
-keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
-
 -- Oil
 keymap("n", "-", "<cmd>Oil<CR>")
-
--- Illuminate
-
-keymap("n", "<a-n>", '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>') -- used to be noremap
-keymap("n", "<a-p>", '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>')
-
-
