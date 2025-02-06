@@ -112,7 +112,7 @@ return {
     "jay-babu/mason-null-ls.nvim",
     event = "VeryLazy",
     opts = {
-      ensure_installed = { "stylua", "cpplint", "clang_format" },
+      ensure_installed = { "stylua", "cpplint", "clang_format", "black" },
     },
   },
 
@@ -130,6 +130,7 @@ return {
       return {
         sources = {
           nls.builtins.formatting.stylua,
+          nls.builtins.formatting.black
         },
       }
     end,
