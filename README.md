@@ -25,25 +25,3 @@ Clone this under your ~/.config/nvim directory
 git clone https://github.com/neilmehra/nvim.git ~/.config/nvim
 ```
 
-## Plugin List
-
-Only considering explicit installs (no deps)
-
-- lazy
-- alpha
-- nvim-cmp
-- LuaSnip
-- Mason
-- null-ls
-- autopairs
-- treesitter
-- oil
-- rustaceanvim
-- which-key
-- toggleterm
-- vim-startuptime
-- time-tracker
-- indent-blankline
-- flash
-- indent-blankline
-- telescope
