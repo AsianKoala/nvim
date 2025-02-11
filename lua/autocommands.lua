@@ -88,11 +88,21 @@ local function convert_to_pdf()
     output_pdf
   )
 
-  vim.fn.system(cmd)
+  local dir = vim.fn.fnamemodify(full_path, ":h")
+  -- vim.fn.system(cmd)
 
-  if vim.v.shell_error ~= 0 then
-    vim.notify("Pandoc conversion failed for: " .. full_path, vim.log.levels.ERROR)
-  end
+  vim.fn.jobstart(cmd, {
+    cwd = dir,
+    on_exit = function(_, exit_code, _)
+      vim.schedule(function()
+        if exit_code == 0 then
+          vim.notify("Pandoc conversion succeeded!", vim.log.levels.INFO)
+        else
+          vim.notify("Pandoc conversion failed!", vim.log.levels.ERROR)
+        end
+      end)
+    end,
+  })
 end
 
 vim.api.nvim_create_autocmd("BufWritePost", {
