@@ -101,3 +101,17 @@ local function open_zathura_for_current_file()
 end
 
 keymap("n", "<leader>z", open_zathura_for_current_file, opts)
+
+
+local function paste_image()
+  local filename = os.date("image_%Y%m%d_%H%M%S") .. ".png"
+  local buffer_dir = vim.fn.expand("%:p:h")
+
+  local filepath = buffer_dir .. "/" .. filename
+  vim.fn.system("xclip -selection clipboard -t image/png -o > " .. vim.fn.shellescape(filepath))
+
+  local markdown_str = "![](" .. filename .. ")"
+  vim.api.nvim_put({ markdown_str }, "", true, true)
+end
+
+keymap("n", "<leader>p", paste_image, opts);
