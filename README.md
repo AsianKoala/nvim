@@ -10,12 +10,12 @@ A minimal neovim config curated for my workflow.
 I use neovim v0.10.3, other versions may/may not work.
 
 - npm for LSP installation
-- [ripgrep](https://github.com/BurntSushi/ripgrep) for [Telescope](https://github.com/nvim-telescope/telescope.nvim)
-- a [nerd font](https://github.com/ryanoasis/nerd-fonts) for icons
-- [rust-analyzer](https://rust-analyzer.github.io/) for [rustaceanvim](https://github.com/mrcjkb/rustaceanvim)
-- sqlite3 [time-tracker.nvim](https://github.com/3rd/time-tracker.nvim)
-- pandoc, texlive, treesitter-cli for markdown and latex integration
-
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- a [nerd font](https://github.com/ryanoasis/nerd-fonts)
+- [rust-analyzer](https://rust-analyzer.github.io/)
+- sqlite3 for [time-tracker.nvim](https://github.com/3rd/time-tracker.nvim)
+- pandoc
+- texlive
 
 
 ## Install
