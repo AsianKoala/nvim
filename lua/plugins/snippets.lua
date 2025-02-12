@@ -334,6 +334,18 @@ freopen((name + ".out").c_str(), "w", stdout);@!
         key = "cpp",
       })
 
+      ls.add_snippets("markdown", {
+        s("ra", {
+          t("$\\rightarrow$")
+        }),
+        s("la", {
+          t("$\\leftarrow$")
+        }),
+      }, {
+        key = "markdown",
+      })
+
+
       require("luasnip.loaders.from_vscode").lazy_load { include = { "python" } }
     end,
   },
